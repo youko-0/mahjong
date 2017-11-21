@@ -1,0 +1,7 @@
+/bin/*
+!/bin/res
+!/bin/index.html
+!/bin/unpack.json
+libs
+release
+/laya/assets/comp
