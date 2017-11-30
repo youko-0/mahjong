@@ -4,11 +4,14 @@ module game {
         m_ws: network.ws;
         users: Array<userStruct> = null;
 
-        m_bWatch = false;
         m_myDesk: number;
         m_status: number;
+
+        m_curPlayer: number;
+        m_otherOut: number;
         constructor() {
             gameClient.instance = this;
+            console.log(gameInfo.serverIp + ":" + gameInfo.serverPort);
             this.users = new Array<userStruct>();
             this.m_ws = new network.ws("ws://" + gameInfo.serverIp + ":" + gameInfo.serverPort);
             this.m_ws.OnMessage = (data) => {
@@ -153,14 +156,81 @@ module game {
         }
 
         OnFrame(head, data) {
-
+            switch (head.bAssistantID) {
+                case 2:
+                    this.setGameStation(head, data);
+                    break;
+            }
         }
 
         OnGame(head, data) {
             switch (head.bAssistantID) {
-                case 50:
-                    //showBtnBegin
-                    uiview.gameView.instance.showBtnBegin(true);
+                case 1:
+                    //userAgree
+                    break;
+                case 10:
+                    //gameBegin
+                    uiview.gameView.instance.makeWalls(17 * 2 * 4);
+                    break;
+                case 16:
+                    //2szDir&Gp
+                    break;
+                case 19:
+                    //Send card
+                    uiview.gameView.instance.sendCards(data);
+                    break;
+                case 25:
+                    //beginOut
+                    break;
+                case 26:
+                    //notifyDingQue
+                    uiview.gameView.instance.showChips(!data.bFinish[this.m_myDesk]);
+                    break;
+                case 27:
+                    //notifyOutCard
+                    this.m_curPlayer = data.byUser;
+                    this.m_otherOut = data.byPs;
+                    uiview.gameView.instance.outCard(data);
+                    break;
+                case 28:
+                    //notifyZhua
+                    uiview.gameView.instance.zhuaPai(data);
+                    break;
+                case 29:
+                    //notifyBlock
+                    uiview.gameView.instance.notifyBlock(data);
+                    break;
+                case 30:
+                    //notifyChiPai
+                    break;
+                case 31:
+                    //notifyPeng
+                    break;
+                case 32:
+                    //notifyKan
+                    break;
+                case 33:
+                    //notifySao
+                    break;
+                case 34:
+                    //notifyGang
+                    break;
+                case 37:
+                    //notifyTing
+                    break;
+                case 36:
+                    //notifyHu
+                    break;
+                case 37:
+                    //countFen
+                    uiview.gameView.instance.showFin(true);
+                    break;
+                case 38:
+                    //end
+                    break;
+                case 52:
+                    //showAllOver
+                    uiview.gameView.instance.showFin(true);
                     break;
                 case 142:
                     //userAgree/Offline
@@ -183,142 +253,37 @@ module game {
                 case 138:
                     //showDismiss
                     break;
-                case 104:
-                    uiview.gameView.instance.gameBegin();
-                    break;
-                case 55:
-                    //showGrpRob
-                    uiview.gameView.instance.showBtnBegin(false);
-                    uiview.gameView.instance.showRobs(true);
-                    uiview.gameView.instance.showTimer("请抢庄", 5);
-                    break;
-                case 56:
-                    //SetRob
-                    uiview.gameView.instance.setStatus(data.bDeskStation, data.iValue > 0 ? 1 : 0);
-                    break;
-                case 57:
-                    //robAnim & setNt
-                    uiview.gameView.instance.setNt(data.bDeskStation);
-                    break;
-                case 51:
-                    //showChip
-                    uiview.gameView.instance.showRobs(false);
-                    uiview.gameView.instance.showChips(true);
-                    uiview.gameView.instance.showTimer("请下注", 5);
-                    break;
-                case 92:
-                    //setNote
-                    uiview.gameView.instance.setStatus(data.iOutPeople, data.iCurNote + 1);
-                    break;
-                case 53:
-                    //AddCards
-                    for (let i = 0; i < gameInfo.max_people; ++i) {
-                        if (this.users[i] == null)
-                            continue;
-                        uiview.gameView.instance.AddCards(i, data.bCard[i]);
-                    }
-                    break;
-                case 59:
-                    //waitOpen & showTip
-                    uiview.gameView.instance.showChips(false);
-                    uiview.gameView.instance.showOpens(true);
-                    uiview.gameView.instance.showTimer("请开牌", 5);
-                    break;
-                case 106:
-                    //openFinish
-                    uiview.gameView.instance.setBeFin(data.bOpenStation, true);
-                    break;
-                case 105:
-                    //openAnim & setFin
-                    for (let i = 0; i < gameInfo.max_people; ++i) {
-                        if (this.users[i] == null)
-                            continue;
-                        uiview.gameView.instance.OpenCards(i, data.iCardShape[i]);
-                    }
-                    uiview.gameView.instance.fin.setFinInfo(data);
-                    break;
-                case 65:
-                    //showFin
-                    uiview.gameView.instance.showFin(true);
-                    break;
-                case 52:
-                    //showAllOver
-                    uiview.gameView.instance.showFin(true);
-                    break;
+
             }
         }
 
+        reqOutCard(tile) {
+            var data = {
+                byUser: this.m_myDesk,
+                byPs: tile,
+                bTing: false
+            }
+            this.m_ws.Send(180, 27, data);
+        }
+
         setGameStation(head, data) {
-            this.m_myDesk = data.bDeskStation;
             uiview.gameView.instance.setPlayerInfo(this.users);
             switch (data.Stationpara) {
                 case 0:
                 case 1:
                     break;
                 case 20:
-                    this.m_bWatch = data.bWatchMode;
-
-                    var iTimeRest = data.iTimeRest;
-                    if (data.iGameFlag === 25) {
-                        //call_score
-                        for (let i = 0; i < 5; ++i) {
-                            if (data.iCallScore[i] != -1) {
-                                uiview.gameView.instance.setStatus(i, data.iCallScore[i] > 0 ? 1 : 0);
-                            }
-                        }
-                        if (!this.m_bWatch && data.iCallScore[this.m_myDesk]) {
-                            uiview.gameView.instance.showRobs(false);
-                            uiview.gameView.instance.showTimer("请抢庄", iTimeRest);
-                        } else {
-                            uiview.gameView.instance.showTimer("等待其他人抢庄", iTimeRest);
-                        }
-                    }
-                    if (data.iGameFlag === 26) {
-                        //chip
-                        uiview.gameView.instance.showRobs(false);
-                        uiview.gameView.instance.setNt(data.iUpGradePeople);
-                        for (let i = 0; i < 5; ++i) {
-                            if (data.iTotalNote[i] > 0) {
-                                uiview.gameView.instance.setStatus(i, data.iTotalNote[i] + 1);
-                            }
-                        }
-                        if (this.m_bWatch || data.iUpGradePeople === this.m_myDesk || data.iTotalNote[this.m_myDesk] > 0) {
-                            uiview.gameView.instance.showTimer("等待闲家下注", iTimeRest);
-                            uiview.gameView.instance.showChips(false);
-                        } else {
-                            uiview.gameView.instance.showTimer("请下注", iTimeRest);
-                            uiview.gameView.instance.showChips(true);
-                        }
-                    }
-                    for (let i = 0; i < 5; ++i) {
-                        if (data.iUserCard[i][0] === 255)
-                            continue;
-                        uiview.gameView.instance.AddCards(i, data.iUserCard[i]);
-                    }
+                    //send card
+                    uiview.gameView.instance.makeWalls(17 * 2 * 4);
+                    uiview.gameView.instance.sendCards(data);
                     break;
                 case 22:
-                    //game playing
-                    this.m_bWatch = data.bWatchMode;
-                    uiview.gameView.instance.setNt(data.iUpGradePeople);
-                    for (let i = 0; i < 5; ++i) {
-                        if (data.iUserCard[i][0] == 255)
-                            continue;
-                        uiview.gameView.instance.setStatus(i, data.iTotalNote[i] + 1);
-                        uiview.gameView.instance.AddCards(i, data.iUserCard[i]);
-                        if (data.iStation[i] === 0x02)
-                            uiview.gameView.instance.setBeFin(i);
-                    }
-
-                    var iTimeRest = data.iTimeRest;
-                    uiview.gameView.instance.showChips(false);
-                    uiview.gameView.instance.showRobs(false);
-                    if (!this.m_bWatch && data.iStation[this.m_myDesk] != 0x02) {
-                        uiview.gameView.instance.showOpens(true);
-                        uiview.gameView.instance.showTimer("请开牌", iTimeRest);
-                    } else {
-                        uiview.gameView.instance.showOpens(false);
-                        uiview.gameView.instance.showTimer("等待他人开牌", iTimeRest);
-                    }
+                    this.m_curPlayer = data.m_byNowOutStation;
+                    this.m_otherOut = data.m_byOtherOutPai;
+                    uiview.gameView.instance.makeWalls(17 * 2 * 4);
+                    uiview.gameView.instance.sendCards(data);
+                    uiview.gameView.instance.setOutCard(data);
+                    break;
             }
         }
     }

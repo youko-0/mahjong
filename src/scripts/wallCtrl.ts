@@ -30,13 +30,13 @@ module script {
             return this.wall.getChildAt(idx).name.substr(3);
         }
 
-        // getIdxByVal(val) {
-        //     for (let i = 0; i < this.wall.numChildren; ++i) {
-        //         if (this.getValByIdx(i) == val)
-        //             return i;
-        //     }
-        //     return -1;
-        // }
+        getChildByVal(val): number {
+            for (let i = 0; i < this.wall.numChildren; ++i) {
+                if (this.wall.getChildAt(i).name.substr(3) == val)
+                    return i;
+            }
+            return -1;
+        }
 
         //用于在一局结束后将所有牌回收
         pushCards(children) {

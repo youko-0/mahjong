@@ -6,8 +6,6 @@ module uiview {
         m_client: game.gameClient = null;
 
         scene: Laya.Scene;
-        aniBegin: Laya.Animation;
-        aniFin: Laya.Animation;
 
         hands: Laya.Sprite3D[] = [];
         outs: Laya.Sprite3D[] = [];
@@ -17,108 +15,41 @@ module uiview {
             gameView.instance = this;
 
             Laya.loader.load(game.uiAtlas.tiles, Laya.Handler.create(this, this.onLoaded))
-            this.aniBegin = new Laya.Animation();
-            this.aniFin = new Laya.Animation();
-            this.aniBegin.loadAtlas("res/atlas/anim/start.atlas", null, "animStart");
-            this.aniFin.loadAtlas("res/atlas/anim/result.atlas", null, "animFin");
-            this.btnBegin.on(Laya.Event.CLICK, this, this.onBtnBegin);
-            var robs = this.btns.getChildAt(0);
-            for (let i = 0; i < robs.numChildren; ++i) {
-                robs.getChildAt(i).on(Laya.Event.CLICK, this, this.onBtnRob, [i]);
-            }
-            var chips = this.btns.getChildAt(1);
+
+            //wan tiao tong
+            var chips = this.btns.getChildAt(0);
             for (let i = 0; i < chips.numChildren; ++i) {
-                chips.getChildAt(i).on(Laya.Event.CLICK, this, this.onBtnChip, [i + 1]);
+                chips.getChildAt(i).on(Laya.Event.CLICK, this, this.onBtnChip, [i]);
             }
-            var opens = this.btns.getChildAt(2);
-            for (let i = 0; i < opens.numChildren; ++i) {
-                opens.getChildAt(i).on(Laya.Event.CLICK, this, this.onBtnOpne, [i]);
-            }
+
+            this.blocks.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnPeng);
+
+            (this.deskInfo.getChildAt(0) as Laya.Label).text = game.gameInfo.deskPwd + "";
+
         }
         onLoaded() {
-            this.scene = Laya.stage.addChild(new Laya.Scene()) as Laya.Scene;
-
-            //添加照相机
-            var camera: Laya.Camera = (this.scene.addChild(new Laya.Camera(16 / 9, 0.2, 2))) as Laya.Camera;
-            camera.transform.translate(new Laya.Vector3(0, 0.75, -0.3));
-            camera.transform.rotate(new Laya.Vector3(65, 0, 0));
-            camera.fieldOfView = 35;
-            camera.clearColor = null;
-
-            var hand0 = new Laya.Sprite3D();
-            hand0.transform.position = new Vector3(0.36, 0, -0.09);
-            hand0.transform.rotate(new Vector3(0, 270, 0));
-            var hand1 = new Laya.Sprite3D();
-            hand1.transform.position = new Vector3(-0.35, 0, -0.19);
-            hand1.transform.rotate(new Vector3(60, 0, 0));
-            var hand2 = new Laya.Sprite3D();
-            hand2.transform.position = new Vector3(-0.36, 0, 0.3);
-            hand2.transform.rotate(new Vector3(0, 90, 0));
-            var hand3 = new Laya.Sprite3D();
-            hand3.transform.position = new Vector3(0.21, 0, 0.34);
-            hand3.transform.rotate(new Vector3(0, 180, 0));
-            this.hands.push(hand0, hand1, hand2, hand3);
-            this.scene.addChild(hand0);
-            this.scene.addChild(hand1);
-            this.scene.addChild(hand2);
-            this.scene.addChild(hand3);
-
-            var out0 = new Laya.Sprite3D();
-            out0.transform.translate(new Vector3(0.15, 0, 0.02));
-            out0.transform.rotate(new Vector3(0, 270, 0));
-            var out1 = new Laya.Sprite3D();
-            out1.transform.translate(new Vector3(-0.08, 0, 0));
-            out1.transform.rotate(new Vector3(0, 0, 0));
-            var out2 = new Laya.Sprite3D();
-            out2.transform.translate(new Vector3(-0.15, 0, 0.18));
-            out2.transform.rotate(new Vector3(0, 90, 0));
-            var out3 = new Laya.Sprite3D();
-            out3.transform.translate(new Vector3(0.08, 0, 0.2));
-            out3.transform.rotate(new Vector3(0, 180, 0));
-            this.outs.push(out0, out1, out2, out3);
-            this.scene.addChild(out0);
-            this.scene.addChild(out1);
-            this.scene.addChild(out2);
-            this.scene.addChild(out3);
-
-            this.wall = new Laya.Sprite3D();
-            this.wall.transform.translate(new Vector3(0, 0.007, 0.1));
-            this.wall.transform.scale = new Vector3(0.7);
-            this.scene.addChild(this.wall);
-
-
-            var testData = [];
-            for (let i = 1; i < 38; ++i) {
-                if (i % 10 === 0)
-                    continue;
-                for (let j = 0; j < 4; ++j)
-                    testData.push(i);
-            }
-
-            for (let i = 0; i < testData.length; ++i) {
-                var sp = new Laya.Sprite3D("res/models/mah" + testData[i] + "-pCube1.lh");
-                sp.transform.translate(new Vector3());
-                sp.transform.rotate(new Vector3());
-                this.wall.addChild(sp);
-            }
-
-            //Laya.loader.create("res/models/mah1-pCube1.lm", Laya.Handler.create(this, this.moduleLoaded));
-            //this.m_client = new game.gameClient();
-            // var rule = game.gameInfo.json_rule;
-            // var str = "";
-            // var ntRules = ["固定庄", "轮庄", "抢庄"];
-            // str += ntRules[parseInt(rule.nt_rule)];
-            // str += ",";
-            // var ptRules = ["经典模式", "疯狂模式", "最高4倍", "最高3倍"];
-            // str += ptRules[parseInt(rule.point_rule)];
-            // (this.deskInfo.getChildByName("option") as Laya.Label).text = str;
-            // (this.deskInfo.getChildByName("pwd") as Laya.Label).text = game.gameInfo.deskPwd + "";
-            // (this.deskInfo.getChildByName("total") as Laya.Label).text = game.gameInfo.max_round + "";
-            this.clearUI();
+            Laya.loader.create("res/models/LayaScene_main/main.ls", Laya.Handler.create(this, this.modelLoaded));
+            //this.clearUI();
         }
 
-        moduleLoaded() {
-
+        private modelLoaded() {
+            this.scene = Laya.loader.getRes("res/models/LayaScene_main/main.ls");
+            Laya.stage.addChild(this.scene);
+            Laya.stage.setChildIndex(this.scene, 0);
+            for (let i = 0; i < 4; ++i) {
+                var hand = this.scene.getChildByName("hand" + i) as Laya.Sprite3D;
+                var handCtrl = hand.addComponent(script.handCtrl) as script.handCtrl;
+                handCtrl.setView(i);
+                this.hands.push(hand);
+                var out = this.scene.getChildByName("out" + i) as Laya.Sprite3D;
+                out.addComponent(script.outCtrl);
+                this.outs.push(out);
+            }
+            this.wall = this.scene.getChildByName("wall") as Laya.Sprite3D;
+            var wallCtrl = this.wall.addComponent(script.wallCtrl) as script.wallCtrl;
+            //this.wall.transform.localRotationEuler  = new Vector3(0,-90,0);
+            console.log("init over");
+            this.m_client = new game.gameClient();
         }
 
         setDeskInfo(data) {
@@ -146,10 +77,6 @@ module uiview {
             }
         }
 
-        createAllMah(data: number[]) {
-
-        }
-
         showBtnBegin(bShow) {
             this.btnBegin.visible = bShow;
         }
@@ -159,7 +86,7 @@ module uiview {
         }
 
         showChips(bShow) {
-            (this.btns.getChildAt(1) as Laya.Button).visible = bShow;
+            (this.btns.getChildAt(0) as Laya.Button).visible = bShow;
         }
 
         showOpens(bShow) {
@@ -182,20 +109,35 @@ module uiview {
 
         onBtnChip(val) {
             var data = {
-                iVrebType: 0x06,
-                iNote: val
+                byUser: this.m_client.m_myDesk,
+                byQue: val,
+                byQuePai: [255, 255, 255, 255],
+                bNotify: false,
+                bFinish: [false, false, false, false]
             }
-            this.m_client.m_ws.Send(180, 51, data);
+            this.m_client.m_ws.Send(180, 26, data);
         }
 
-        onBtnOpne(val) {
+        onBtnChi() {
+
+        }
+
+        onBtnPeng() {
             var data = {
-                iVerbType: 0x02,
-                bUpCard: [255, 255, 255]
+                byUser: this.m_client.m_myDesk,
+                byBePeng: this.m_client.m_curPlayer,
+                byPs: this.m_client.m_otherOut
             }
-            this.m_client.m_ws.Send(180, 89, data);
+            this.m_client.m_ws.Send(180, 31, data);
         }
 
+        onBtnGang() {
+
+        }
+
+        onBtnHu() {
+
+        }
         onBack() {
             Laya.loader.load(game.uiAtlas.home, Laya.Handler.create(this, () => {
                 var home = new uiview.home.homeView();
@@ -210,19 +152,8 @@ module uiview {
             }));
         }
 
-        setBeFin(desk, bshow) {
-            var fin: Laya.Image = this.cards.getChildAt(this.vStation(desk)).getChildAt(0) as Laya.Image;
-            fin.visible = bshow;
-            if (bshow) {
-                fin.scale(0, 0);
-                Laya.Tween.to(fin, { scaleX: 1, scaleY: 1 }, 200);
-            }
-
-            //(this.players.getChildAt(this.vStation(desk)).getChildByName("bFin") as Laya.Sprite).visible = true;
-        }
-
         gameBegin() {
-            this.aniBegin.play(0, false, "animStart");
+
             this.showFin(false);
         }
 
@@ -232,47 +163,128 @@ module uiview {
 
 
         vStation(desk) {
-            return ((desk + game.gameInfo.max_people + 2 - this.m_client.m_myDesk) % game.gameInfo.max_people);
+            return ((desk + game.gameInfo.max_people + 1 - this.m_client.m_myDesk) % game.gameInfo.max_people);
         }
 
-        AddCard(desk, val, idx) {
-            var sp: game.cardSp = this.cards.getChildAt(this.vStation(desk)).addChild(new game.cardSp(val, true, idx)) as game.cardSp;
-            Laya.Tween.to(sp, { x: idx * 40 }, (idx + 1) * 200, Laya.Ease.backOut, null);
+        makeWalls(count) {
+            (this.wall.getComponentByType(script.wallCtrl) as script.wallCtrl).sortChildren();
         }
 
-        AddCards(desk, data: number[]) {
-            for (let i = 0; i < data.length; ++i) {
-                this.AddCard(desk, data[i], i);
-            }
-        }
-
-        OpenCards(desk, bull, bulls) {
-            var root = this.cards.getChildAt(this.vStation(desk));
-            if (bull > 0 && bull <= 10) {
-                //sort
-                for (let i = 0; i < 3; ++i) {
-                    for (let j = i; j < root.numChildren; ++j) {
-                        var sp: game.cardSp = root.getChildAt(j + 2) as game.cardSp;
-                        if (sp.val === bulls[i]) {
-                            if (j !== i) {
-                                root.setChildIndex(sp, i + 2);
-                            }
-                            break;
+        sendCards(data) {
+            for (let i = 0; i < game.gameInfo.max_people; ++i) {
+                for (let j = 0; j < data.m_byArHandPai[i].length; ++j) {
+                    if (data.m_byArHandPai[i][j] == 255)
+                        break;
+                    if (i == game.gameClient.instance.m_myDesk) {
+                        var sp = this.getACardInTheScene(data.m_byArHandPai[i][j], 1);
+                        if (sp != undefined) {
+                            (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
                         }
+                    } else {
+                        var sp = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
+                        (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
                     }
                 }
             }
-            for (let i = 2; i < root.numChildren; ++i) {
-                var sp: game.cardSp = root.getChildAt(i) as game.cardSp;
-                sp.idx = i;
-                sp.flip();
+        }
+
+        //用于断线重连的,出的牌不在手上
+        setOutCard(data) {
+            for (let i = 0; i < game.gameInfo.max_people; ++i) {
+                for (let j = 0; j < data.m_byArOutPai[i].length; ++j) {
+                    if (data.m_byArOutPai[i][j] == 255) {
+                        break;
+                    }
+                    var view = this.vStation(i);
+                    var o = this.getACardInTheScene(data.m_byArOutPai[i][j], 1);
+                    (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
+                }
             }
-            var spBull = new Laya.Image(game.uiAtlas.tiles[bull + 6]);
-            var type: Laya.Image = root.getChildAt(1) as Laya.Image;
-            type.addChild(new Laya.Image(game.uiAtlas.tiles[bull + 6]));
-            type.visible = true;
-            type.scaleX = 0;
-            Laya.Tween.to(type, { scaleX: 1 }, 500);
+
+        }
+
+        //一张一张出的牌
+        outCard(data) {
+            var desk = data.byUser;
+            var view = this.vStation(desk);
+            var o: Laya.Sprite3D;
+            if (desk == this.m_client.m_myDesk) {
+                o = this.getACardInHand(data.byPs);
+            } else {
+                o = this.getACardInTheScene(data.byPs, view);
+            }
+            (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
+        }
+
+        zhuaPai(data) {
+            var desk = data.byUser;
+            var view = this.vStation(desk);
+            var o: Laya.Sprite3D;
+            if (desk == this.m_client.m_myDesk) {
+                o = this.getACardInTheScene(data.byPs, 1);
+                (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addCard(o);
+            } else {
+                o = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
+                (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(o);
+            }
+        }
+
+        notifyBlock(data) {
+            if (data.bCanAction) {
+                this.blocks.visible = true;
+                (this.blocks.getChildAt(0) as Laya.Button).visible = data.bChi;
+                (this.blocks.getChildAt(1) as Laya.Button).visible = data.bPeng;
+                (this.blocks.getChildAt(2) as Laya.Button).visible = data.bGang;
+                (this.blocks.getChildAt(3) as Laya.Button).visible = data.bHu;
+                (this.blocks.getChildAt(this.blocks.numChildren - 1) as Laya.Button).visible = true;
+            }
+        }
+
+        addBlock(data) {
+            //peng
+            //手上找两张，出牌玩家一张
+
+            //gang
+            //ming gang 手上找三张 出牌玩家一张
+
+
+
+        }
+
+        getACardInTheScene(val: number, view: number): Laya.Sprite3D {
+            //find in the wall,remove as the last
+            var idx = (this.wall.getComponentByType(script.wallCtrl) as script.wallCtrl).getChildByVal(val);
+            if (idx != -1) {
+                //为了之后的动画考虑,找到的牌和牌堆里最后一张牌进行交换(位置)
+                var last = this.wall.getChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
+                var sp = this.wall.removeChildAt(idx) as Laya.Sprite3D;
+                if (idx < this.wall.numChildren) {
+                    this.wall.setChildIndex(last, idx);
+                    last.transform.localPosition = sp.transform.localPosition;
+                    last.transform.localRotationEuler = sp.transform.localRotationEuler;
+                }
+                //sp.pos
+                return sp;
+            }
+            //then find in other hand
+            for (let i = 0; i < 4; ++i) {
+                if (i == 1)
+                    continue;
+                var sp = (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
+                if (sp != undefined) {
+                    if (view != i) {
+                        var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
+                        (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
+                    }
+                    return sp;
+                }
+            }
+            return undefined;
+        }
+
+        getACardInHand(val: number): Laya.Sprite3D {
+            var o = (this.hands[1].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
+            return o;
         }
 
         clearUI() {
@@ -281,12 +293,7 @@ module uiview {
             this.showRobs(false);
             this.showChips(false);
             this.showOpens(false);
-            this.cards._childs.forEach((v, idx, arr) => {
-                v.removeChildren(2, v.numChildren - 2);
-                v.getChildAt(0).visible = false;
-                v.getChildAt(1).visible = false;
-            });
-            for (let i = 0; i < 5; ++i) {
+            for (let i = 0; i < game.gameInfo.max_people; ++i) {
                 (this.players.getChildAt(i).getChildByName("money") as Laya.Label).visible = false;
             }
         }

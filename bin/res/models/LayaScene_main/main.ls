@@ -89,7 +89,7 @@
 					0.9,
 					0.9
 				],
-				"meshPath":"Library/unity default resources-Quad[642].lm",
+				"meshPath":"Library/unity default resources-Quad[646].lm",
 				"materials":[
 					{
 						"type":"Laya.StandardMaterial",
@@ -362,8 +362,8 @@
 				"layer":0,
 				"translate":[
 					0,
-					-0.056,
-					-0.464
+					-0.15,
+					-0.52
 				],
 				"rotation":[
 					0,
@@ -403,7 +403,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah1-pCube1[10064].lm",
+						"meshPath":"Assets/mahjong/mah1-pCube1[10096].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -411,7 +411,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -438,7 +452,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah2-pCube1[10098].lm",
+						"meshPath":"Assets/mahjong/mah2-pCube1[10186].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -446,7 +460,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -473,7 +501,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah3-pCube1[10130].lm",
+						"meshPath":"Assets/mahjong/mah3-pCube1[10332].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -481,7 +509,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -508,7 +550,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah4-pCube1[10310].lm",
+						"meshPath":"Assets/mahjong/mah4-pCube1[11010].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -516,7 +558,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -543,7 +599,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah5-pCube1[10296].lm",
+						"meshPath":"Assets/mahjong/mah5-pCube1[10972].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -551,7 +607,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -578,7 +648,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah6-pCube1[10188].lm",
+						"meshPath":"Assets/mahjong/mah6-pCube1[10560].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -586,7 +656,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -613,7 +697,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah7-pCube1[10106].lm",
+						"meshPath":"Assets/mahjong/mah7-pCube1[10208].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -621,7 +705,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -648,7 +746,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah8-pCube1[10082].lm",
+						"meshPath":"Assets/mahjong/mah8-pCube1[10136].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -656,7 +754,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -683,7 +795,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah9-pCube1[10316].lm",
+						"meshPath":"Assets/mahjong/mah9-pCube1[11028].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -691,7 +803,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -718,7 +844,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah11-pCube1[10206].lm",
+						"meshPath":"Assets/mahjong/mah11-pCube1[10640].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -726,7 +852,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -753,7 +893,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah12-pCube1[10070].lm",
+						"meshPath":"Assets/mahjong/mah12-pCube1[10122].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -761,7 +901,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -788,7 +942,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah13-pCube1[10304].lm",
+						"meshPath":"Assets/mahjong/mah13-pCube1[11002].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -796,7 +950,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -823,7 +991,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah14-pCube1[10262].lm",
+						"meshPath":"Assets/mahjong/mah14-pCube1[10820].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -831,7 +999,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -858,7 +1040,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah15-pCube1[10248].lm",
+						"meshPath":"Assets/mahjong/mah15-pCube1[10760].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -866,7 +1048,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -893,7 +1089,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah16-pCube1[10142].lm",
+						"meshPath":"Assets/mahjong/mah16-pCube1[10370].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -901,7 +1097,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -928,7 +1138,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah17-pCube1[10076].lm",
+						"meshPath":"Assets/mahjong/mah17-pCube1[10128].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -936,7 +1146,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -963,7 +1187,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah18-pCube1[10154].lm",
+						"meshPath":"Assets/mahjong/mah18-pCube1[10458].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -971,7 +1195,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -998,7 +1236,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah19-pCube1[10166].lm",
+						"meshPath":"Assets/mahjong/mah19-pCube1[10504].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1006,7 +1244,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1033,7 +1285,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah21-pCube1[10122].lm",
+						"meshPath":"Assets/mahjong/mah21-pCube1[10268].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1041,7 +1293,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1068,7 +1334,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah22-pCube1[10242].lm",
+						"meshPath":"Assets/mahjong/mah22-pCube1[10750].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1076,7 +1342,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1103,7 +1383,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah23-pCube1[10284].lm",
+						"meshPath":"Assets/mahjong/mah23-pCube1[10876].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1111,7 +1391,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1138,7 +1432,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah24-pCube1[10272].lm",
+						"meshPath":"Assets/mahjong/mah24-pCube1[10844].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1146,7 +1440,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1173,7 +1481,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah25-pCube1[10256].lm",
+						"meshPath":"Assets/mahjong/mah25-pCube1[10812].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1181,7 +1489,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1208,7 +1530,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah26-pCube1[10212].lm",
+						"meshPath":"Assets/mahjong/mah26-pCube1[10672].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1216,7 +1538,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1243,7 +1579,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah27-pCube1[10172].lm",
+						"meshPath":"Assets/mahjong/mah27-pCube1[10510].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1251,7 +1587,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1278,7 +1628,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah28-pCube1[10278].lm",
+						"meshPath":"Assets/mahjong/mah28-pCube1[10858].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1286,7 +1636,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1313,7 +1677,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah29-pCube1[10220].lm",
+						"meshPath":"Assets/mahjong/mah29-pCube1[10700].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1321,7 +1685,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1348,7 +1726,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah31-pCube1[10182].lm",
+						"meshPath":"Assets/mahjong/mah31-pCube1[10548].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1356,7 +1734,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1383,7 +1775,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah32-pCube1[10136].lm",
+						"meshPath":"Assets/mahjong/mah32-pCube1[10340].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1391,7 +1783,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1418,7 +1824,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah33-pCube1[10332].lm",
+						"meshPath":"Assets/mahjong/mah33-pCube1[11092].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1426,7 +1832,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1453,7 +1873,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah34-pCube1[10088].lm",
+						"meshPath":"Assets/mahjong/mah34-pCube1[10152].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1461,7 +1881,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1488,7 +1922,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah35-pCube1[10194].lm",
+						"meshPath":"Assets/mahjong/mah35-pCube1[10568].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1496,7 +1930,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1523,7 +1971,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah36-pCube1[10200].lm",
+						"meshPath":"Assets/mahjong/mah36-pCube1[10634].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1531,7 +1979,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				},
 				{
@@ -1558,7 +2020,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah37-pCube1[10236].lm",
+						"meshPath":"Assets/mahjong/mah37-pCube1[10744].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1566,7 +2028,21 @@
 							}
 						]
 					},
-					"components":{},
+					"components":{
+						"BoxCollider":{
+							"isTrigger":false,
+							"center":[
+								0,
+								0.02001983,
+								0
+							],
+							"size":[
+								0.03,
+								0.04,
+								0.02
+							]
+						}
+					},
 					"child":[]
 				}
 			]

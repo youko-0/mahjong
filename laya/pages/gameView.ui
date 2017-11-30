@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":34,
+    "selectedBox":140,
+    "selecteID":148,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -15,29 +15,17 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":0,"skin":"game/game_bg.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":62,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
             "props":{"y":0,"x":640,"var":"deskInfo","skin":"game/toolbar.png","pivotX":200},
             "nodeParent":1,
             "label":"Image(deskInfo)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":63,
             "child":[
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":10,"x":117,"text":"233223","strokeColor":"#0f5358","stroke":2,"name":"pwd","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -50,6 +38,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":9,"x":265,"text":"0","strokeColor":"#0f5358","stroke":2,"name":"cur","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -62,6 +51,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":9,"x":318,"text":"0","strokeColor":"#0f5358","stroke":2,"name":"total","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -74,6 +64,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":54,"x":200,"text":"1111","strokeColor":"#0f5358","stroke":2,"name":"option","fontSize":22,"color":"#C9EFEC","bold":true,"anchorY":0.5,"anchorX":0.5,"align":"center"},
                     "nodeParent":63,
@@ -92,49 +83,14 @@
             "props":{"y":480,"x":640,"width":32,"var":"btns","pivotY":16,"pivotX":16,"height":32},
             "nodeParent":1,
             "label":"Sprite(btns)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":2,
             "child":[
                 {
-                    "type":"Sprite",
-                    "props":{"y":16,"x":16,"width":32,"visible":false,"pivotY":16,"pivotX":16,"name":"robs","height":32},
-                    "nodeParent":2,
-                    "label":"Sprite(robs)",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":5,
-                    "child":[
-                        {
-                            "type":"Button",
-                            "props":{"y":3,"x":-132,"stateNum":"1","skin":"game/btn_bq.png"},
-                            "nodeParent":5,
-                            "label":"Button",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":6,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Button",
-                            "props":{"y":7,"x":143,"stateNum":"1","skin":"game/btn_qz.png"},
-                            "nodeParent":5,
-                            "label":"Button",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":7,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
+                    "x":30,
                     "type":"Sprite",
                     "props":{"y":15,"x":15,"width":32,"visible":false,"pivotY":16,"pivotX":16,"name":"chips","height":32},
                     "nodeParent":2,
@@ -147,7 +103,7 @@
                     "child":[
                         {
                             "type":"Button",
-                            "props":{"y":5,"x":-221,"stateNum":"1","skin":"game/btn_x1.png"},
+                            "props":{"y":5,"x":-221,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":24,"labelColors":"white","label":"  万"},
                             "nodeParent":8,
                             "label":"Button",
                             "isDirectory":false,
@@ -159,7 +115,7 @@
                         },
                         {
                             "type":"Button",
-                            "props":{"y":7,"x":-3,"stateNum":"1","skin":"game/btn_x2.png"},
+                            "props":{"y":7,"x":-3,"stateNum":"1","skin":"game/btn_x2.png","label":"条"},
                             "nodeParent":8,
                             "label":"Button",
                             "isDirectory":false,
@@ -171,7 +127,7 @@
                         },
                         {
                             "type":"Button",
-                            "props":{"y":7,"x":222,"stateNum":"1","skin":"game/btn_x3.png"},
+                            "props":{"y":7,"x":222,"stateNum":"1","skin":"game/btn_x3.png","label":"筒"},
                             "nodeParent":8,
                             "label":"Button",
                             "isDirectory":false,
@@ -183,54 +139,84 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
-                    "props":{"y":16,"x":13,"width":32,"visible":false,"pivotY":16,"pivotX":16,"name":"opens","height":32},
+                    "props":{"y":25,"x":25,"width":32,"visible":false,"var":"blocks","pivotY":16,"pivotX":16,"height":32},
                     "nodeParent":2,
-                    "label":"Sprite(opens)",
-                    "isOpen":false,
+                    "label":"Sprite(blocks)",
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
-                    "compId":11,
+                    "compId":140,
                     "child":[
                         {
+                            "x":45,
                             "type":"Button",
-                            "props":{"y":3,"x":-132,"stateNum":"1","skin":"game/btn_mn.png"},
-                            "nodeParent":11,
+                            "props":{"y":5,"x":-221,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":32,"labelColors":"red","label":"吃"},
+                            "nodeParent":140,
                             "label":"Button",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":12,
+                            "compId":141,
                             "child":[
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Button",
-                            "props":{"y":7,"x":143,"stateNum":"1","skin":"game/btn_yn.png"},
-                            "nodeParent":11,
+                            "props":{"y":5,"x":-92,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":32,"labelColors":"red","label":"碰"},
+                            "nodeParent":140,
                             "label":"Button",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":13,
+                            "compId":144,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"y":3,"x":37,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":32,"labelColors":"red","label":"杠"},
+                            "nodeParent":140,
+                            "label":"Button",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":145,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"y":1,"x":190,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":32,"labelColors":"red","label":"胡"},
+                            "nodeParent":140,
+                            "label":"Button",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":149,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"y":2,"x":348,"stateNum":"1","skin":"game/btn_x1.png","labelStrokeColor":"#000000","labelStroke":0,"labelSize":32,"labelColors":"red","label":"过"},
+                            "nodeParent":140,
+                            "label":"Button",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":150,
                             "child":[
                                 ]
                         }]
-                },
-                {
-                    "type":"Button",
-                    "props":{"y":5,"x":-4,"var":"btnBegin","stateNum":"1","skin":"game/btn_begin.png"},
-                    "nodeParent":2,
-                    "label":"Button(btnBegin)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":15,
-                    "child":[
-                        ]
                 }],
-            "$LOCKED":true
+            "$LOCKED":false
         },
         {
             "x":15,
@@ -238,15 +224,235 @@
             "props":{"var":"players"},
             "nodeParent":1,
             "label":"Sprite(players)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":33,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
-                    "props":{"y":33,"x":1134,"skin":"game/avatar_bg.png"},
+                    "props":{"y":225,"x":1148,"skin":"game/avatar_bg.png"},
+                    "nodeParent":33,
+                    "label":"Image",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":121,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "props":{"y":90,"x":8,"skin":"game/avatar_coin.png"},
+                            "nodeParent":121,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":122,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
+                            "nodeParent":121,
+                            "label":"Image(nt)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":123,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":15,"x":17,"width":64,"name":"head","height":64},
+                            "nodeParent":121,
+                            "label":"Sprite(head)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":124,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":125,"x":-10,"name":"nick"},
+                            "nodeParent":121,
+                            "label":"Sprite(nick)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":125,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Text",
+                            "props":{"y":89,"x":50,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
+                            "nodeParent":121,
+                            "label":"Text(money)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":126,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":363,"x":37,"skin":"game/avatar_bg.png"},
+                    "nodeParent":33,
+                    "label":"Image",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":127,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "props":{"y":90,"x":8,"skin":"game/avatar_coin.png"},
+                            "nodeParent":127,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":128,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
+                            "nodeParent":127,
+                            "label":"Image(nt)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":129,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":15,"x":17,"width":64,"name":"head","height":64},
+                            "nodeParent":127,
+                            "label":"Sprite(head)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":130,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":125,"x":-10,"name":"nick"},
+                            "nodeParent":127,
+                            "label":"Sprite(nick)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":131,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Text",
+                            "props":{"y":89,"x":50,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
+                            "nodeParent":127,
+                            "label":"Text(money)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":132,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":91,"x":40,"skin":"game/avatar_bg.png"},
+                    "nodeParent":33,
+                    "label":"Image",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":133,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "props":{"y":90,"x":8,"skin":"game/avatar_coin.png"},
+                            "nodeParent":133,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":134,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
+                            "nodeParent":133,
+                            "label":"Image(nt)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":135,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":15,"x":17,"width":64,"name":"head","height":64},
+                            "nodeParent":133,
+                            "label":"Sprite(head)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":136,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "props":{"y":125,"x":-10,"name":"nick"},
+                            "nodeParent":133,
+                            "label":"Sprite(nick)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":137,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Text",
+                            "props":{"y":89,"x":50,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
+                            "nodeParent":133,
+                            "label":"Text(money)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":138,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":39,"x":985,"skin":"game/avatar_bg.png"},
                     "nodeParent":33,
                     "label":"Image",
                     "isOpen":false,
@@ -257,25 +463,13 @@
                     "child":[
                         {
                             "type":"Image",
-                            "props":{"y":109,"x":10,"skin":"game/avatar_coin.png"},
+                            "props":{"y":90,"x":8,"skin":"game/avatar_coin.png"},
                             "nodeParent":93,
                             "label":"Image",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
                             "compId":94,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/avatar_outline.png","name":"line"},
-                            "nodeParent":93,
-                            "label":"Image(line)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":95,
                             "child":[
                                 ]
                         },
@@ -293,19 +487,7 @@
                         },
                         {
                             "type":"Sprite",
-                            "props":{"y":1,"x":-78,"name":"status"},
-                            "nodeParent":93,
-                            "label":"Sprite(status)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":22,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":37,"x":13,"width":64,"name":"head","height":64},
+                            "props":{"y":15,"x":17,"width":64,"name":"head","height":64},
                             "nodeParent":93,
                             "label":"Sprite(head)",
                             "isDirectory":false,
@@ -317,7 +499,7 @@
                         },
                         {
                             "type":"Sprite",
-                            "props":{"y":2,"x":11,"name":"nick"},
+                            "props":{"y":125,"x":-10,"name":"nick"},
                             "nodeParent":93,
                             "label":"Sprite(nick)",
                             "isDirectory":false,
@@ -329,7 +511,7 @@
                         },
                         {
                             "type":"Text",
-                            "props":{"y":111,"x":59,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
+                            "props":{"y":89,"x":50,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
                             "nodeParent":93,
                             "label":"Text(money)",
                             "isDirectory":false,
@@ -339,603 +521,13 @@
                             "child":[
                                 ]
                         }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":249,"x":1136,"skin":"game/avatar_bg.png"},
-                    "nodeParent":33,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":97,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":109,"x":10,"skin":"game/avatar_coin.png"},
-                            "nodeParent":97,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":98,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/avatar_outline.png","name":"line"},
-                            "nodeParent":97,
-                            "label":"Image(line)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":99,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
-                            "nodeParent":97,
-                            "label":"Image(nt)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":100,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":1,"x":-78,"name":"status"},
-                            "nodeParent":97,
-                            "label":"Sprite(status)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":101,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":37,"x":13,"width":64,"name":"head","height":64},
-                            "nodeParent":97,
-                            "label":"Sprite(head)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":102,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":2,"x":11,"name":"nick"},
-                            "nodeParent":97,
-                            "label":"Sprite(nick)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":103,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Text",
-                            "props":{"y":111,"x":59,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
-                            "nodeParent":97,
-                            "label":"Text(money)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":104,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":530,"x":54,"skin":"game/avatar_bg.png"},
-                    "nodeParent":33,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":105,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":109,"x":10,"skin":"game/avatar_coin.png"},
-                            "nodeParent":105,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":106,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/avatar_outline.png","name":"line"},
-                            "nodeParent":105,
-                            "label":"Image(line)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":107,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
-                            "nodeParent":105,
-                            "label":"Image(nt)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":108,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":-7,"x":132,"name":"status"},
-                            "nodeParent":105,
-                            "label":"Sprite(status)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":109,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":37,"x":13,"width":64,"name":"head","height":64},
-                            "nodeParent":105,
-                            "label":"Sprite(head)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":110,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":2,"x":11,"name":"nick"},
-                            "nodeParent":105,
-                            "label":"Sprite(nick)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":111,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Text",
-                            "props":{"y":111,"x":59,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
-                            "nodeParent":105,
-                            "label":"Text(money)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":112,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":267,"x":65,"skin":"game/avatar_bg.png"},
-                    "nodeParent":33,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":113,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":109,"x":10,"skin":"game/avatar_coin.png"},
-                            "nodeParent":113,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":114,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/avatar_outline.png","name":"line"},
-                            "nodeParent":113,
-                            "label":"Image(line)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":115,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
-                            "nodeParent":113,
-                            "label":"Image(nt)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":116,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":3,"x":119,"name":"status"},
-                            "nodeParent":113,
-                            "label":"Sprite(status)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":117,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":37,"x":13,"width":64,"name":"head","height":64},
-                            "nodeParent":113,
-                            "label":"Sprite(head)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":118,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":2,"x":11,"name":"nick"},
-                            "nodeParent":113,
-                            "label":"Sprite(nick)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":119,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Text",
-                            "props":{"y":111,"x":59,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
-                            "nodeParent":113,
-                            "label":"Text(money)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":120,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":31,"x":29,"skin":"game/avatar_bg.png"},
-                    "nodeParent":33,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":121,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":109,"x":10,"skin":"game/avatar_coin.png"},
-                            "nodeParent":121,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":122,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/avatar_outline.png","name":"line"},
-                            "nodeParent":121,
-                            "label":"Image(line)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":123,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"y":-15,"x":81,"skin":"game/ntsign.png","name":"nt"},
-                            "nodeParent":121,
-                            "label":"Image(nt)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":124,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":4,"x":134,"name":"status"},
-                            "nodeParent":121,
-                            "label":"Sprite(status)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":125,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":37,"x":13,"width":64,"name":"head","height":64},
-                            "nodeParent":121,
-                            "label":"Sprite(head)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":126,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Sprite",
-                            "props":{"y":2,"x":11,"name":"nick"},
-                            "nodeParent":121,
-                            "label":"Sprite(nick)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":127,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Text",
-                            "props":{"y":111,"x":59,"text":"0","name":"money","fontSize":22,"color":"#ffffff"},
-                            "nodeParent":121,
-                            "label":"Text(money)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":128,
-                            "child":[
-                                ]
-                        }]
-                }],
-            "$LOCKED":true
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "props":{"var":"cards"},
-            "nodeParent":1,
-            "label":"Sprite(cards)",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":34,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "props":{"y":75,"x":797},
-                    "nodeParent":34,
-                    "label":"Sprite",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":35,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":0,"x":0,"skin":"game/bFin.png"},
-                            "nodeParent":35,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":75,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/bulltype.png"},
-                            "nodeParent":35,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":80,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "props":{"y":238,"x":819},
-                    "nodeParent":34,
-                    "label":"Sprite",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":81,
-                    "child":[
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "props":{"y":0,"x":0,"skin":"game/bFin.png"},
-                            "nodeParent":81,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":82,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "props":{"skin":"game/bulltype.png"},
-                            "nodeParent":81,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":83,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "props":{"y":560,"x":455},
-                    "nodeParent":34,
-                    "label":"Sprite",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":84,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":0,"x":0,"skin":"game/bFin.png"},
-                            "nodeParent":84,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":85,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/bulltype.png"},
-                            "nodeParent":84,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":86,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "props":{"y":281,"x":253},
-                    "nodeParent":34,
-                    "label":"Sprite",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":87,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":0,"x":0,"skin":"game/bFin.png"},
-                            "nodeParent":87,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":88,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/bulltype.png"},
-                            "nodeParent":87,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":89,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "props":{"y":68,"x":311},
-                    "nodeParent":34,
-                    "label":"Sprite",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":90,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":0,"x":0,"skin":"game/bFin.png"},
-                            "nodeParent":90,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":91,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Image",
-                            "props":{"skin":"game/bulltype.png"},
-                            "nodeParent":90,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":92,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
                 }],
             "$LOCKED":false
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":324,"x":556,"var":"timer","skin":"game/timerbg.png"},
+            "props":{"y":264,"x":571,"width":142,"var":"timer","skin":"game/turn_pos_bg.png","skewY":0,"skewX":0,"height":142},
             "nodeParent":1,
             "label":"Image(timer)",
             "isOpen":true,

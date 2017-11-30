@@ -54,12 +54,10 @@ P 84CA836F result_btn_share.png
 P 8B7BAB6C result_lose.png
 P CE6D9270 result_win.png
 D game
-P 66CBD933 avatar_bg.png
-P 00746FF8 avatar_bg_x.png
+P 96EDBFD8 avatar_bg.png
 P 91E501BF avatar_coin.png
 P E83A254F avatar_outline.png
 P F24F2A78 avatar_outline_x.png
-P FB9A6D56 bFin.png
 P 7923256B btn1.png
 P 47B0DB4B btn2.png
 P 14E8629D btn_begin.png
@@ -70,12 +68,18 @@ P E7044B5E btn_x1.png
 P 528FDAA2 btn_x2.png
 P 2EE52B47 btn_x3.png
 P B2FD06A0 btn_yn.png
-P 71E340B3 bulltype.png
-R 44965204 game_bg.png
-P 53137C94 ntsign.png
+P 524F7949 count.png
+P 7A674596 count_bg.png
+P 945EC70B ntsign.png
+R B9672DAE playbg1.png
 P C748CF83 scale_bg.png
 P 5F49419E timerbg.png
 P 4ADB220A toolbar.png
+P 4E7D3A6E turn_pos_0.png
+P 329414EE turn_pos_1.png
+P 1BA7E3E1 turn_pos_2.png
+P 3D1BAA63 turn_pos_3.png
+P 6B8DFEAC turn_pos_bg.png
 D home
 P F07B44BB brodcast.png
 P 0073C9D5 hall_notice.png

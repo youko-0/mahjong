@@ -12,7 +12,7 @@ module game {
         serverPort: 0,
         json_rule: "",
         max_round: 0,
-        max_people: 0,
+        max_people: 4,
         ratio: 1.2  //16/9
     }
 

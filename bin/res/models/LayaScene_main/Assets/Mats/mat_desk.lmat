@@ -13,7 +13,7 @@
 		"textures":[
 			{
 				"name":"diffuseTexture",
-				"path":"desk.jpg"
+				"path":"playbg1.jpg"
 			},
 			{
 				"name":"normalTexture",

@@ -1,6 +1,6 @@
 module network {
     export class http {
-        public static webRoot: string = "http://192.168.10.120:8001";
+        public static webRoot: string = "http://192.168.1.109:8001";
         public static getUrl(url: string, fn): void {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {

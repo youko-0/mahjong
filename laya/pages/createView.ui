@@ -28,52 +28,13 @@
         {
             "x":15,
             "type":"RadioGroup",
-            "props":{"y":164,"x":271,"var":"grpRound","space":100,"skin":"create/checkbox.png","selectedIndex":1,"labels":"10局,20局","labelStrokeColor":"#000000","labelSize":32,"labelPadding":"0,0,0,10","labelFont":"SimHei","labelColors":"#40210a,#8c4c1f,#ffff00,gray"},
+            "props":{"y":164,"x":271,"var":"grpRound","space":100,"skin":"create/checkbox.png","selectedIndex":1,"labels":"8局,16局","labelStrokeColor":"#000000","labelSize":32,"labelPadding":"0,0,0,10","labelFont":"SimHei","labelColors":"#40210a,#8c4c1f,#ffff00,gray"},
             "nodeParent":1,
             "label":"RadioGroup(grpRound)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":2,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"RadioGroup",
-            "props":{"y":247,"x":271,"var":"grpNt","space":100,"skin":"create/checkbox.png","selectedIndex":2,"labels":"固定庄,轮庄,抢庄","labelSize":32,"labelPadding":"0,0,0,10","labelFont":"SimHei","labelColors":"#40210a,#8c4c1f,#ffff00,gray"},
-            "nodeParent":1,
-            "label":"RadioGroup(grpNt)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"RadioGroup",
-            "props":{"y":413,"x":271,"var":"grpPt","space":20,"skin":"create/checkbox.png","selectedIndex":1,"labels":"经典模式,疯狂加倍,牛牛四倍,牛牛三倍","labelSize":32,"labelPadding":"0,0,0,10","labelFont":"SimHei","labelColors":"#40210a,#8c4c1f,#ffff00,gray"},
-            "nodeParent":1,
-            "label":"RadioGroup(grpPt)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":4,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"RadioGroup",
-            "props":{"y":330,"x":271,"var":"grpCount","space":80,"skin":"create/checkbox.png","selectedIndex":1,"labels":"2人,3人,4人,5人","labelSize":32,"labelPadding":"0,0,0,10","labelFont":"SimHei","labelColors":"#40210a,#8c4c1f,#ffff00,gray"},
-            "nodeParent":1,
-            "label":"RadioGroup(grpCount)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
             "child":[
                 ]
         },
@@ -126,45 +87,6 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":9,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":251,"x":101,"text":"定庄:","fontSize":32,"font":"SimHei","color":"#40210a"},
-            "nodeParent":1,
-            "label":"Label",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":10,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":334,"x":95,"text":"人数:","fontSize":32,"font":"SimHei","color":"#40210a"},
-            "nodeParent":1,
-            "label":"Label",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":11,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":417,"x":100,"text":"模式:","fontSize":32,"font":"SimHei","color":"#40210a"},
-            "nodeParent":1,
-            "label":"Label",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":13,
             "child":[
                 ]
         }],

@@ -7,8 +7,12 @@ module uiview.home {
         }
         onBtnLogin() {
             if (!Laya.Browser.onMobile) {
-                var str = this.input.text;
-                this.loginByToken(str, str);
+                if (game.userInfo.token != undefined) {
+                    this.loginByToken(game.userInfo.token, game.userInfo.token);
+                } else {
+                    var str = this.input.text;
+                    this.loginByToken(str, str);
+                }
             }
             else {
                 if (Laya.Browser.onAndriod) {

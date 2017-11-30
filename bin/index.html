@@ -11,29 +11,29 @@
 	<meta name='full-screen' content='true' />
 	<meta name='x5-fullscreen' content='true' />
 	<meta name='360-fullscreen' content='true' />
-	<meta name="laya" screenorientation ="landscape"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="laya" screenorientation="landscape" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv='expires' content='0' />
-	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
 </head>
 
 <body>
 	<!--核心包，封装了显示对象渲染，事件，时间管理，时间轴动画，缓动，消息交互,socket，本地存储，鼠标触摸，声音，加载，颜色滤镜，位图字体等-->
 	<script type="text/javascript" src="libs/laya.core.js"></script>
 	<!--封装了webgl渲染管线，如果使用webgl渲染，可以在初始化时调用Laya.init(1000,800,laya.webgl.WebGL);-->
-    <script type="text/javascript" src="libs/laya.webgl.js"></script>
+	<script type="text/javascript" src="libs/laya.webgl.js"></script>
 	<!--是动画模块，包含了swf动画，骨骼动画等-->
-    <script type="text/javascript" src="libs/laya.ani.js"></script>
+	<script type="text/javascript" src="libs/laya.ani.js"></script>
 	<!--包含更多webgl滤镜，比如外发光，阴影，模糊以及更多-->
-    <script type="text/javascript" src="libs/laya.filter.js"></script>
+	<script type="text/javascript" src="libs/laya.filter.js"></script>
 	<!--封装了html动态排版功能-->
-    <script type="text/javascript" src="libs/laya.html.js"></script>
+	<script type="text/javascript" src="libs/laya.html.js"></script>
 	<!--粒子类库-->
-    <script type="text/javascript" src="libs/laya.particle.js"></script>
+	<script type="text/javascript" src="libs/laya.particle.js"></script>
 	<!--提供tileMap解析支持-->
-    <script type="text/javascript" src="libs/laya.tiledmap.js"></script>
+	<script type="text/javascript" src="libs/laya.tiledmap.js"></script>
 	<!--提供了制作UI的各种组件实现-->
-    <script type="text/javascript" src="libs/laya.ui.js"></script>
+	<script type="text/javascript" src="libs/laya.ui.js"></script>
 	<!--提供LayaAir3D接口-->
 	<script type="text/javascript" src="libs/laya.d3.js"></script>
 	<!--用户自定义顺序文件添加到这里-->
@@ -48,13 +48,14 @@
 	<script src="js/game/gameClient.js"></script>
 	<script src="js/game/cardSp.js"></script>
 	<script src="js/game/player.js"></script>
+	<script src="js/scripts/handCtrl.js"></script>
+	<script src="js/scripts/outCtrl.js"></script>
 	<script src="js/scripts/wallCtrl.js"></script>
 	<script src="js/ui/layaUI.max.all.js"></script>
 	<script src="js/uiview/createView.js"></script>
 	<script src="js/uiview/disView.js"></script>
 	<script src="js/uiview/finView.js"></script>
 	<script src="js/uiview/gameView.js"></script>
-	<script src="js/uiview/handCtrl.js"></script>
 	<script src="js/uiview/homeView.js"></script>
 	<script src="js/uiview/inputView.js"></script>
 	<script src="js/uiview/loginView.js"></script>
@@ -65,6 +66,16 @@
 	<!--jsfile--Main-->
 	<script src="js/LayaAir3D.js"></script>
 	<!--jsfile--Main-->
+
+	<script>
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]); return null;
+		}
+		game.userInfo.token = GetQueryString("token");
+		//alert(GetQueryString("token"));
+	</script>
 </body>
 
 </html>
