@@ -23,7 +23,8 @@ module uiview {
             }
 
             this.blocks.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnPeng);
-
+            //this.blocks.getChildAt(2).on(Laya.Event.CLICK, this, this.onBtnGang);
+            this.blocks.getChildAt(4).on(Laya.Event.CLICK, this, this.onBtnPass);
             (this.deskInfo.getChildAt(0) as Laya.Label).text = game.gameInfo.deskPwd + "";
 
         }
@@ -58,7 +59,7 @@ module uiview {
         }
         setPlayerInfo(data: game.userStruct[]) {
             for (let i = 0; i < data.length; ++i) {
-                (this.players.getChildAt(this.vStation(i)).getChildByName("head") as Laya.Sprite).loadImage(network.http.webRoot + "/Image/head/" + data[i].userId + "_head.png", 32, 32, 64, 64);
+                (this.players.getChildAt(this.vStation(i)).getChildByName("head") as Laya.Sprite).loadImage(network.http.webRoot + "/Image/head/" + data[i].userId + "_head.png", 0, 0, 64, 64);
                 (this.players.getChildAt(this.vStation(i)).getChildByName("nick") as Laya.Sprite).loadImage(network.http.webRoot + "/Image/name/" + data[i].userId + ".png");
                 (this.players.getChildAt(this.vStation(i)).getChildByName("money") as Laya.Label).text = data[i].temp_chip + "";
             }
@@ -131,12 +132,21 @@ module uiview {
             this.m_client.m_ws.Send(180, 31, data);
         }
 
-        onBtnGang() {
-
+        onBtnGang(val) {
+            var data = {
+                byUser: this.m_client.m_myDesk,
+                byBeGang: this.m_client.m_curPlayer,
+                byPs: val
+            }
+            this.m_client.m_ws.Send(180, 34, data);
         }
 
         onBtnHu() {
 
+        }
+        onBtnPass() {
+            this.blocks.visible = false;
+            this.m_client.m_ws.SendEmpty(180, 75);
         }
         onBack() {
             Laya.loader.load(game.uiAtlas.home, Laya.Handler.create(this, () => {
@@ -191,16 +201,31 @@ module uiview {
         //用于断线重连的,出的牌不在手上
         setOutCard(data) {
             for (let i = 0; i < game.gameInfo.max_people; ++i) {
-                for (let j = 0; j < data.m_byArOutPai[i].length; ++j) {
-                    if (data.m_byArOutPai[i][j] == 255) {
+                for (let j = 0; j < data.outpai_[i].length; ++j) {
+                    if (data.outpai_[i][j] == 255) {
                         break;
                     }
                     var view = this.vStation(i);
-                    var o = this.getACardInTheScene(data.m_byArOutPai[i][j], 1);
+                    var o = this.getACardInTheScene(data.outpai_[i][j], 1);
                     (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
                 }
             }
 
+        }
+
+        //断线重连
+        setBlock(data) {
+            //data.byType;
+            var view = this.vStation(data.iStation);
+            var arr: Array<Laya.Sprite3D> = new Array<Laya.Sprite3D>();
+            for (let i = 0; i < data.byData.length; ++i) {
+                if (data.byData[i] == 255)
+                    break;
+                var sp = this.getACardInTheScene(data.byData[i], view);
+                arr.push(sp);
+                //var sp = this.getACardInHand()
+            }
+            (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addOneBlock(arr);
         }
 
         //一张一张出的牌
@@ -211,7 +236,7 @@ module uiview {
             if (desk == this.m_client.m_myDesk) {
                 o = this.getACardInHand(data.byPs);
             } else {
-                o = this.getACardInTheScene(data.byPs, view);
+                o = this.getACardInTheScene(data.byPs, view, true);
             }
             (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
         }
@@ -237,21 +262,56 @@ module uiview {
                 (this.blocks.getChildAt(2) as Laya.Button).visible = data.bGang;
                 (this.blocks.getChildAt(3) as Laya.Button).visible = data.bHu;
                 (this.blocks.getChildAt(this.blocks.numChildren - 1) as Laya.Button).visible = true;
+
+                if (data.bGang) {
+                    this.blocks.getChildAt(2).on(Laya.Event.CLICK, this, () => {
+                        var d = {
+                            byUser: this.m_client.m_myDesk,
+                            byBeGang: this.m_client.m_curPlayer,
+                            byType: data.m_iGangData[0][0],
+                            byPs: data.m_iGangData[0][1]
+                        }
+                        this.m_client.m_ws.Send(180, 34, d);
+                    });
+                }
             }
         }
 
         addBlock(data) {
-            //peng
-            //手上找两张，出牌玩家一张
-
-            //gang
-            //ming gang 手上找三张 出牌玩家一张
-
-
-
+            this.blocks.visible = false;
+            var view = this.vStation(data.byUser);
+            var arr: Array<Laya.Sprite3D> = new Array<Laya.Sprite3D>();
+            switch (data.byType) {
+                case 2:
+                    if (data.byUser == this.m_client.m_myDesk) {
+                        var sp1 = this.getACardInHand(data.byPs);
+                        var sp2 = this.getACardInHand(data.byPs);
+                        var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        arr.push(sp1, sp2, sp3);
+                    } else {
+                        var sp1 = this.getACardInTheScene(data.byPs, view, true);
+                        var sp2 = this.getACardInTheScene(data.byPs, view, true);
+                        var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        arr.push(sp1, sp2, sp3);
+                    }
+                    break;
+                case 5:
+                    //bu gang
+                    if (data.byUser == this.m_client.m_myDesk) {
+                        var sp = this.getACardInHand(data.byPs);
+                        arr.push(sp);
+                    } else {
+                        var sp = this.getACardInTheScene(data.byPs, view, true);
+                        arr.push(sp);
+                    }
+                    break;
+                case 6:
+                //ming gang
+            }
+            (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addOneBlock(arr);
         }
 
-        getACardInTheScene(val: number, view: number): Laya.Sprite3D {
+        getACardInTheScene(val: number, view: number, exchange = false): Laya.Sprite3D {
             //find in the wall,remove as the last
             var idx = (this.wall.getComponentByType(script.wallCtrl) as script.wallCtrl).getChildByVal(val);
             if (idx != -1) {
@@ -272,8 +332,13 @@ module uiview {
                     continue;
                 var sp = (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
                 if (sp != undefined) {
-                    if (view != i) {
-                        var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
+                    if (exchange) {
+                        if (view != i) {
+                            var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
+                            (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
+                        }
+                    } else {
+                        var last = this.wall.getChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
                         (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
                     }
                     return sp;

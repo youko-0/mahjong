@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":140,
-    "selecteID":148,
+    "selectedBox":1,
+    "selecteID":69,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -523,45 +523,6 @@
                         }]
                 }],
             "$LOCKED":false
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":264,"x":571,"width":142,"var":"timer","skin":"game/turn_pos_bg.png","skewY":0,"skewX":0,"height":142},
-            "nodeParent":1,
-            "label":"Image(timer)",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":69,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":15,"x":20,"text":"label","name":"label","fontSize":24,"color":"#ffffff"},
-                    "nodeParent":69,
-                    "label":"Label(label)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":53,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":15,"x":82,"text":"label","name":"timer","fontSize":24,"color":"#ffffff"},
-                    "nodeParent":69,
-                    "label":"Label(timer)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":54,
-                    "child":[
-                        ]
-                }]
         },
         {
             "x":15,

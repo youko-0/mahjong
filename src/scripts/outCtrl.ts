@@ -19,8 +19,13 @@ module script {
                 return;
             }
             o.transform.localPosition = new Vector3((this.out.numChildren % 7 - 4) * 0.03, 0, 0);
-            o.transform.localRotationEuler = new Vector3(-90,0 , 180);
+            o.transform.localRotationEuler = new Vector3(-90, 0, 180);
             this.out.addChild(o);
+        }
+
+        getLastOutCard(): Laya.Sprite3D {
+
+            return this.out.removeChildAt(this.out.numChildren - 1) as Laya.Sprite3D;
         }
     }
 }

@@ -205,6 +205,7 @@ module game {
                     break;
                 case 31:
                     //notifyPeng
+                    uiview.gameView.instance.addBlock(data);
                     break;
                 case 32:
                     //notifyKan
@@ -214,6 +215,7 @@ module game {
                     break;
                 case 34:
                     //notifyGang
+                    uiview.gameView.instance.addBlock(data);
                     break;
                 case 37:
                     //notifyTing
@@ -283,6 +285,11 @@ module game {
                     uiview.gameView.instance.makeWalls(17 * 2 * 4);
                     uiview.gameView.instance.sendCards(data);
                     uiview.gameView.instance.setOutCard(data);
+                    for (let i = 0; i < data.cpg_.length; ++i) {
+                        for (let j = 0; j < data.cpg_[i].length; ++j) {
+                            uiview.gameView.instance.setBlock(data.cpg_[i][j]);
+                        }
+                    }
                     break;
             }
         }

@@ -1,7 +1,7 @@
 {
 	"version":"LAYAMATERIAL:01",
 	"props":{
-		"name":"mat_desk",
+		"name":"mat_timer",
 		"shaderName":"SIMPLE",
 		"cull":2,
 		"blend":0,
@@ -13,7 +13,7 @@
 		"textures":[
 			{
 				"name":"diffuseTexture",
-				"path":"../mahjong/playbg1.jpg"
+				"path":"../mahjong/turn_pos_bg.png"
 			},
 			{
 				"name":"normalTexture",
