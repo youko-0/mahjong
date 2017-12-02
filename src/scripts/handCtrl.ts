@@ -42,7 +42,7 @@ module script {
                 }
             }
             this.slideChildren(idx, 0.03);
-            o.transform.localPosition = new Vector3(-this.startIdx - idx * 0.03, 0, 0);   //因为要转180度,这里x全部取负
+            o.transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
             o.transform.localRotationEuler = new Vector3(0, 180, 0);  //朝向反的
             this.hand.addChild(o);
             this.hand.setChildIndex(o, idx);
@@ -52,7 +52,7 @@ module script {
         //瞎往后放一张(背面)
         justAddCard(o: Laya.Sprite3D) {
             let idx = this.hand.numChildren;
-            o.transform.localPosition = new Vector3(- this.startIdx - idx * 0.03, 0, 0);   //因为要转180度,这里x全部取负
+            o.transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
             o.transform.localRotationEuler = new Vector3(0, 180, 0);  //朝向反的
             this.hand.addChild(o);
             o.layer = Laya.Layer.getLayerByNumber(0);
@@ -74,7 +74,7 @@ module script {
         addOneBlock(os: Laya.Sprite3D[]) {
             for (let i = 0; i < os.length; ++i) {
                 let idx = this.startIdx + i;
-                os[i].transform.localPosition = new Vector3(- idx * 0.03, 0, 0);   //因为要转180度,这里x全部取负
+                os[i].transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
                 os[i].transform.localRotationEuler = new Vector3(this.view == 1 ? -30 : -90, 180, 0);  //朝向反的
                 this.hand.addChild(os[i]);
                 this.hand.setChildIndex(os[i], idx);

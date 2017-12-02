@@ -24,6 +24,7 @@ module uiview {
 
             this.blocks.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnPeng);
             //this.blocks.getChildAt(2).on(Laya.Event.CLICK, this, this.onBtnGang);
+            this.blocks.getChildAt(3).on(Laya.Event.CLICK, this, this.onBtnHu);
             this.blocks.getChildAt(4).on(Laya.Event.CLICK, this, this.onBtnPass);
             (this.deskInfo.getChildAt(0) as Laya.Label).text = game.gameInfo.deskPwd + "";
 
@@ -78,34 +79,8 @@ module uiview {
             }
         }
 
-        showBtnBegin(bShow) {
-            this.btnBegin.visible = bShow;
-        }
-
-        showRobs(bShow) {
-            (this.btns.getChildAt(0) as Laya.Button).visible = bShow;
-        }
-
         showChips(bShow) {
             (this.btns.getChildAt(0) as Laya.Button).visible = bShow;
-        }
-
-        showOpens(bShow) {
-            (this.btns.getChildAt(2) as Laya.Button).visible = bShow;
-        }
-
-        onBtnBegin() {
-            this.m_client.m_ws.SendEmpty(180, 50);
-            this.showBtnBegin(false);
-        }
-
-        onBtnRob(val) {
-            var data = {
-                bDeskStation: this.m_client.m_myDesk,
-                iValue: val,
-                bCallScoreflag: false
-            }
-            this.m_client.m_ws.Send(180, 55, data);
         }
 
         onBtnChip(val) {
@@ -127,7 +102,7 @@ module uiview {
             var data = {
                 byUser: this.m_client.m_myDesk,
                 byBePeng: this.m_client.m_curPlayer,
-                byPs: this.m_client.m_otherOut
+                byPs: this.m_client.m_lastTile
             }
             this.m_client.m_ws.Send(180, 31, data);
         }
@@ -142,7 +117,12 @@ module uiview {
         }
 
         onBtnHu() {
-
+            var data = {
+                byUser: this.m_client.m_myDesk,
+                byDianPao: this.m_client.m_curPlayer,
+                byPs: this.m_client.m_lastTile
+            }
+            this.m_client.m_ws.Send(180, 36, data);
         }
         onBtnPass() {
             this.blocks.visible = false;
@@ -287,12 +267,16 @@ module uiview {
                         var sp1 = this.getACardInHand(data.byPs);
                         var sp2 = this.getACardInHand(data.byPs);
                         var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
-                        arr.push(sp1, sp2, sp3);
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
                     } else {
                         var sp1 = this.getACardInTheScene(data.byPs, view, true);
                         var sp2 = this.getACardInTheScene(data.byPs, view, true);
                         var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
-                        arr.push(sp1, sp2, sp3);
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
                     }
                     break;
                 case 5:
@@ -353,25 +337,22 @@ module uiview {
         }
 
         clearUI() {
-            this.showBtnBegin(false);
+            this.blocks.visible = false;
             this.showFin(false);
-            this.showRobs(false);
             this.showChips(false);
-            this.showOpens(false);
             for (let i = 0; i < game.gameInfo.max_people; ++i) {
                 (this.players.getChildAt(i).getChildByName("money") as Laya.Label).visible = false;
             }
         }
 
         m_rest: number = 0;
-        showTimer(label: string, time: number) {
+        showTimer(desk, time: number) {
             this.m_rest = time;
-            var lab: Laya.Label = this.timer.getChildByName("label") as Laya.Label;
-            var tim: Laya.Label = this.timer.getChildByName("timer") as Laya.Label;
-            lab.text = label + ":";
-            tim.text = "" + this.m_rest;
-            tim.x = lab.width + 12 + lab.x;
-            this.timer.width = tim.width + lab.width + lab.x * 2 + 12;
+            var timer = this.scene.getChildByName("desk").getChildByName("timer");
+            var view = this.vStation(desk);
+            timer._childs.forEach((o: Laya.Sprite3D, idx, arr) => {
+                o.active = (idx == view);
+            });
             Laya.timer.loop(1000, this, this._updateTimer);
         }
         _updateTimer() {
@@ -380,7 +361,7 @@ module uiview {
                 Laya.timer.clear(this, this._updateTimer);
                 return;
             }
-            (this.timer.getChildByName("timer") as Laya.Label).text = "" + this.m_rest;
+
         }
     }
 }

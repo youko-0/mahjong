@@ -8,7 +8,7 @@ module game {
         m_status: number;
 
         m_curPlayer: number;
-        m_otherOut: number;
+        m_lastTile: number;
         constructor() {
             gameClient.instance = this;
             console.log(gameInfo.serverIp + ":" + gameInfo.serverPort);
@@ -181,6 +181,7 @@ module game {
                     break;
                 case 25:
                     //beginOut
+                    uiview.gameView.instance.showTimer(data.byUser, 10);
                     break;
                 case 26:
                     //notifyDingQue
@@ -189,29 +190,23 @@ module game {
                 case 27:
                     //notifyOutCard
                     this.m_curPlayer = data.byUser;
-                    this.m_otherOut = data.byPs;
+                    this.m_lastTile = data.byPs;
                     uiview.gameView.instance.outCard(data);
                     break;
                 case 28:
                     //notifyZhua
+                    this.m_lastTile = data.byPs;
+                    this.m_curPlayer = data.byUser;
+                    uiview.gameView.instance.showTimer(data.byUser, 10);
                     uiview.gameView.instance.zhuaPai(data);
                     break;
                 case 29:
                     //notifyBlock
                     uiview.gameView.instance.notifyBlock(data);
                     break;
-                case 30:
-                    //notifyChiPai
-                    break;
                 case 31:
                     //notifyPeng
                     uiview.gameView.instance.addBlock(data);
-                    break;
-                case 32:
-                    //notifyKan
-                    break;
-                case 33:
-                    //notifySao
                     break;
                 case 34:
                     //notifyGang
@@ -281,7 +276,8 @@ module game {
                     break;
                 case 22:
                     this.m_curPlayer = data.m_byNowOutStation;
-                    this.m_otherOut = data.m_byOtherOutPai;
+                    uiview.gameView.instance.showTimer(data.m_byNowOutStation, 10);
+                    this.m_lastTile = data.m_byOtherOutPai;
                     uiview.gameView.instance.makeWalls(17 * 2 * 4);
                     uiview.gameView.instance.sendCards(data);
                     uiview.gameView.instance.setOutCard(data);
