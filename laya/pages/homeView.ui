@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":8,
+    "selecteID":20,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -22,19 +22,6 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":13,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":12,"x":416,"skin":"home/logo.png","scaleY":0.5,"scaleX":0.5},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":17,
             "child":[
                 ]
         },
@@ -126,7 +113,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":168,"x":800,"var":"btnJoin","stateNum":"1","skin":"home/main_btn_join.png"},
+            "props":{"y":164,"x":880,"var":"btnJoin","stateNum":"1","skin":"home/main_btn_join.png"},
             "nodeParent":1,
             "label":"Button(btnJoin)",
             "isDirectory":false,
@@ -139,7 +126,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":155,"x":404,"var":"btnCreate","stateNum":"1","skin":"home/main_btn_create.png"},
+            "props":{"y":151,"x":484,"var":"btnCreate","stateNum":"1","skin":"home/main_btn_create.png"},
             "nodeParent":1,
             "label":"Button(btnCreate)",
             "isDirectory":false,
@@ -178,6 +165,47 @@
             "child":[
                 ],
             "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"groupView.ui",
+            "props":{"y":0,"x":0,"var":"viewgroup","runtime":"uiview.home.groupView"},
+            "nodeParent":1,
+            "label":"UIView(viewgroup)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":18,
+            "child":[
+                ],
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":139,"x":458,"skin":"home/brodcast.png"},
+            "nodeParent":1,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":19,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":31,"x":33,"skin":"home/main_headbox.png"},
+            "nodeParent":1,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":20,
+            "child":[
+                ]
         }],
     "animations":[
         {

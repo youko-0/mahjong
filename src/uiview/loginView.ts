@@ -7,12 +7,18 @@ module uiview.home {
         }
         onBtnLogin() {
             if (!Laya.Browser.onMobile) {
-                if (game.userInfo.token != undefined) {
-                    this.loginByToken(game.userInfo.token, game.userInfo.token);
-                } else {
+                if (this.input.text != "TextInput") {
                     var str = this.input.text;
                     this.loginByToken(str, str);
+                }else{
+                    this.loginByToken(game.userInfo.token, game.userInfo.token);
                 }
+                // if (game.userInfo.token != undefined) {
+                //     this.loginByToken(game.userInfo.token, game.userInfo.token);
+                // } else {
+                //     var str = this.input.text;
+                //     this.loginByToken(str, str);
+                // }
             }
             else {
                 if (Laya.Browser.onAndriod) {

@@ -67,20 +67,24 @@ module script {
                     break;
                 }
             }
-            this.slideChildren(idx, -0.03);
+            if (idx < this.hand.numChildren)
+                this.slideChildren(idx, -0.03);
             return o;
         }
 
         addOneBlock(os: Laya.Sprite3D[]) {
             for (let i = 0; i < os.length; ++i) {
                 let idx = this.startIdx + i;
-                os[i].transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
+                if (i == 3)
+                    os[i].transform.localPosition = new Vector3(os[1].transform.localPosition.x, 0.01, 0);
+                else
+                    os[i].transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
                 os[i].transform.localRotationEuler = new Vector3(this.view == 1 ? -30 : -90, 180, 0);  //朝向反的
                 this.hand.addChild(os[i]);
                 this.hand.setChildIndex(os[i], idx);
                 os[i].layer = Laya.Layer.getLayerByNumber(0);
             }
-            this.startIdx += 3;
+            this.startIdx += os.length;
             this.slideChildren(this.startIdx, 0.1);     //0.03*3+0.01
         }
 

@@ -89,7 +89,7 @@
 					1,
 					1
 				],
-				"meshPath":"Assets/mahjong/desk-desk[11942].lm",
+				"meshPath":"Assets/mahjong/desk-desk[10968].lm",
 				"materials":[
 					{
 						"type":"Laya.StandardMaterial",
@@ -123,7 +123,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/desk-timer[11958].lm",
+						"meshPath":"Assets/mahjong/desk-timer[10978].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -137,27 +137,27 @@
 							"type":"MeshSprite3D",
 							"props":{
 								"isStatic":false,
-								"name":"pPlane3"
+								"name":"pPlane6"
 							},
 							"customProps":{
 								"layer":0,
 								"translate":[
-									-0.03984284,
+									0.04013387,
 									0.001,
-									0.002558122
+									-0.003494636
 								],
 								"rotation":[
-									0,
-									0,
-									0,
-									-1
+									-6.123234E-17,
+									1,
+									-6.123234E-17,
+									6.123234E-17
 								],
 								"scale":[
 									1,
 									1,
 									1
 								],
-								"meshPath":"Assets/mahjong/desk-pPlane3[11950].lm",
+								"meshPath":"Assets/mahjong/desk-pPlane6[10976].lm",
 								"materials":[
 									{
 										"type":"Laya.StandardMaterial",
@@ -192,7 +192,42 @@
 									1,
 									1
 								],
-								"meshPath":"Assets/mahjong/desk-pPlane4[11952].lm",
+								"meshPath":"Assets/mahjong/desk-pPlane4[10972].lm",
+								"materials":[
+									{
+										"type":"Laya.StandardMaterial",
+										"path":"Assets/Mats/mat_timer.lmat"
+									}
+								]
+							},
+							"components":{},
+							"child":[]
+						},
+						{
+							"type":"MeshSprite3D",
+							"props":{
+								"isStatic":false,
+								"name":"pPlane3"
+							},
+							"customProps":{
+								"layer":0,
+								"translate":[
+									-0.03984284,
+									0.001,
+									0.002558122
+								],
+								"rotation":[
+									0,
+									0,
+									0,
+									-1
+								],
+								"scale":[
+									1,
+									1,
+									1
+								],
+								"meshPath":"Assets/mahjong/desk-pPlane3[10970].lm",
 								"materials":[
 									{
 										"type":"Laya.StandardMaterial",
@@ -227,42 +262,7 @@
 									1,
 									1
 								],
-								"meshPath":"Assets/mahjong/desk-pPlane5[11954].lm",
-								"materials":[
-									{
-										"type":"Laya.StandardMaterial",
-										"path":"Assets/Mats/mat_timer.lmat"
-									}
-								]
-							},
-							"components":{},
-							"child":[]
-						},
-						{
-							"type":"MeshSprite3D",
-							"props":{
-								"isStatic":false,
-								"name":"pPlane6"
-							},
-							"customProps":{
-								"layer":0,
-								"translate":[
-									0.04013387,
-									0.001,
-									-0.003494636
-								],
-								"rotation":[
-									-6.123234E-17,
-									1,
-									-6.123234E-17,
-									6.123234E-17
-								],
-								"scale":[
-									1,
-									1,
-									1
-								],
-								"meshPath":"Assets/mahjong/desk-pPlane6[11956].lm",
+								"meshPath":"Assets/mahjong/desk-pPlane5[10974].lm",
 								"materials":[
 									{
 										"type":"Laya.StandardMaterial",
@@ -580,7 +580,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah1-pCube1[10100].lm",
+						"meshPath":"Assets/mahjong/mah1-pCube1[10112].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -629,7 +629,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah2-pCube1[10192].lm",
+						"meshPath":"Assets/mahjong/mah2-pCube1[10204].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -678,7 +678,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah3-pCube1[10340].lm",
+						"meshPath":"Assets/mahjong/mah3-pCube1[10354].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -727,7 +727,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah4-pCube1[11022].lm",
+						"meshPath":"Assets/mahjong/mah4-pCube1[11062].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -776,7 +776,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah5-pCube1[10984].lm",
+						"meshPath":"Assets/mahjong/mah5-pCube1[11026].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -825,7 +825,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah6-pCube1[10570].lm",
+						"meshPath":"Assets/mahjong/mah6-pCube1[10584].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -874,7 +874,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah7-pCube1[10214].lm",
+						"meshPath":"Assets/mahjong/mah7-pCube1[10228].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -923,7 +923,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah8-pCube1[10140].lm",
+						"meshPath":"Assets/mahjong/mah8-pCube1[10152].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -972,7 +972,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah9-pCube1[11040].lm",
+						"meshPath":"Assets/mahjong/mah9-pCube1[11080].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1021,7 +1021,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah11-pCube1[10650].lm",
+						"meshPath":"Assets/mahjong/mah11-pCube1[10664].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1070,7 +1070,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah12-pCube1[10126].lm",
+						"meshPath":"Assets/mahjong/mah12-pCube1[10138].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1119,7 +1119,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah13-pCube1[11014].lm",
+						"meshPath":"Assets/mahjong/mah13-pCube1[11054].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1168,7 +1168,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah14-pCube1[10830].lm",
+						"meshPath":"Assets/mahjong/mah14-pCube1[10844].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1217,7 +1217,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah15-pCube1[10770].lm",
+						"meshPath":"Assets/mahjong/mah15-pCube1[10782].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1266,7 +1266,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah16-pCube1[10378].lm",
+						"meshPath":"Assets/mahjong/mah16-pCube1[10392].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1315,7 +1315,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah17-pCube1[10132].lm",
+						"meshPath":"Assets/mahjong/mah17-pCube1[10144].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1364,7 +1364,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah18-pCube1[10466].lm",
+						"meshPath":"Assets/mahjong/mah18-pCube1[10482].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1413,7 +1413,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah19-pCube1[10512].lm",
+						"meshPath":"Assets/mahjong/mah19-pCube1[10526].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1462,7 +1462,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah21-pCube1[10274].lm",
+						"meshPath":"Assets/mahjong/mah21-pCube1[10288].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1511,7 +1511,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah22-pCube1[10760].lm",
+						"meshPath":"Assets/mahjong/mah22-pCube1[10772].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1560,7 +1560,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah23-pCube1[10888].lm",
+						"meshPath":"Assets/mahjong/mah23-pCube1[10908].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1609,7 +1609,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah24-pCube1[10856].lm",
+						"meshPath":"Assets/mahjong/mah24-pCube1[10876].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1658,7 +1658,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah25-pCube1[10822].lm",
+						"meshPath":"Assets/mahjong/mah25-pCube1[10836].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1707,7 +1707,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah26-pCube1[10682].lm",
+						"meshPath":"Assets/mahjong/mah26-pCube1[10696].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1756,7 +1756,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah27-pCube1[10518].lm",
+						"meshPath":"Assets/mahjong/mah27-pCube1[10532].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1805,7 +1805,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah28-pCube1[10870].lm",
+						"meshPath":"Assets/mahjong/mah28-pCube1[10890].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1854,7 +1854,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah29-pCube1[10710].lm",
+						"meshPath":"Assets/mahjong/mah29-pCube1[10724].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1903,7 +1903,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah31-pCube1[10558].lm",
+						"meshPath":"Assets/mahjong/mah31-pCube1[10572].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -1952,7 +1952,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah32-pCube1[10348].lm",
+						"meshPath":"Assets/mahjong/mah32-pCube1[10362].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -2001,7 +2001,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah33-pCube1[11106].lm",
+						"meshPath":"Assets/mahjong/mah33-pCube1[11152].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -2050,7 +2050,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah34-pCube1[10156].lm",
+						"meshPath":"Assets/mahjong/mah34-pCube1[10168].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -2099,7 +2099,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah35-pCube1[10578].lm",
+						"meshPath":"Assets/mahjong/mah35-pCube1[10592].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -2148,7 +2148,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah36-pCube1[10644].lm",
+						"meshPath":"Assets/mahjong/mah36-pCube1[10658].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",
@@ -2197,7 +2197,7 @@
 							1,
 							1
 						],
-						"meshPath":"Assets/mahjong/mah37-pCube1[10754].lm",
+						"meshPath":"Assets/mahjong/mah37-pCube1[10766].lm",
 						"materials":[
 							{
 								"type":"Laya.StandardMaterial",

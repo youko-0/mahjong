@@ -27,6 +27,7 @@ module uiview {
             this.blocks.getChildAt(3).on(Laya.Event.CLICK, this, this.onBtnHu);
             this.blocks.getChildAt(4).on(Laya.Event.CLICK, this, this.onBtnPass);
             (this.deskInfo.getChildAt(0) as Laya.Label).text = game.gameInfo.deskPwd + "";
+            this.exchange.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnExchange);
 
         }
         onLoaded() {
@@ -142,6 +143,23 @@ module uiview {
             }));
         }
 
+        onBtnExchange() {
+            var arrStr = (this.exchange.getChildAt(0) as Laya.TextInput).text.split(" ");
+            var arrVal = new Array<number>();
+            arrStr.forEach((v, idx, a) => {
+                arrVal.push(parseInt(v));
+            });
+            var data = {
+                value: arrVal
+            }
+            if (data.value.length > 2) {
+                this.m_client.m_ws.Send(180, 119, data);
+            }
+            else {
+                this.m_client.m_ws.Send(180, 120, data);
+            }
+        }
+
         gameBegin() {
 
             this.showFin(false);
@@ -162,20 +180,21 @@ module uiview {
 
         sendCards(data) {
             for (let i = 0; i < game.gameInfo.max_people; ++i) {
+
                 for (let j = 0; j < data.m_byArHandPai[i].length; ++j) {
                     if (data.m_byArHandPai[i][j] == 255)
                         break;
                     if (i == game.gameClient.instance.m_myDesk) {
-                        var sp = this.getACardInTheScene(data.m_byArHandPai[i][j], 1);
-                        if (sp != undefined) {
-                            (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
-                        }
+                        var sp = this.getAWallCard(data.m_byArHandPai[i][j]);
+                        (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
                     } else {
                         var sp = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
                         (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
                     }
                 }
             }
+
+            this.players.getChildAt(this.vStation(this.m_client.m_myDesk)).addChild(this.create2DCards(data.m_byArHandPai[this.m_client.m_myDesk], null));
         }
 
         //用于断线重连的,出的牌不在手上
@@ -186,7 +205,7 @@ module uiview {
                         break;
                     }
                     var view = this.vStation(i);
-                    var o = this.getACardInTheScene(data.outpai_[i][j], 1);
+                    var o = this.getAWallCard(data.outpai_[i][j]);
                     (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
                 }
             }
@@ -201,7 +220,9 @@ module uiview {
             for (let i = 0; i < data.byData.length; ++i) {
                 if (data.byData[i] == 255)
                     break;
-                var sp = this.getACardInTheScene(data.byData[i], view);
+                var sp = this.getAWallCard(data.byData[i]);
+                if (sp == null)     //←←←
+                    return;
                 arr.push(sp);
                 //var sp = this.getACardInHand()
             }
@@ -214,9 +235,9 @@ module uiview {
             var view = this.vStation(desk);
             var o: Laya.Sprite3D;
             if (desk == this.m_client.m_myDesk) {
-                o = this.getACardInHand(data.byPs);
+                o = this.getMyHandCard(data.byPs);
             } else {
-                o = this.getACardInTheScene(data.byPs, view, true);
+                o = this.getAHandCard(data.byPs, view);
             }
             (this.outs[view].getComponentByType(script.outCtrl) as script.outCtrl).addCard(o);
         }
@@ -226,7 +247,7 @@ module uiview {
             var view = this.vStation(desk);
             var o: Laya.Sprite3D;
             if (desk == this.m_client.m_myDesk) {
-                o = this.getACardInTheScene(data.byPs, 1);
+                o = this.getAWallCard(data.byPs);
                 (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addCard(o);
             } else {
                 o = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
@@ -257,23 +278,29 @@ module uiview {
             }
         }
 
+        notifyHu(data) {
+            this.blocks.visible = false;
+        }
+
         addBlock(data) {
             this.blocks.visible = false;
             var view = this.vStation(data.byUser);
+            this.showTimer(data.byUser, 20);
             var arr: Array<Laya.Sprite3D> = new Array<Laya.Sprite3D>();
             switch (data.byType) {
                 case 2:
+                    //peng
                     if (data.byUser == this.m_client.m_myDesk) {
-                        var sp1 = this.getACardInHand(data.byPs);
-                        var sp2 = this.getACardInHand(data.byPs);
-                        var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        var sp1 = this.getMyHandCard(data.byPs);
+                        var sp2 = this.getMyHandCard(data.byPs);
+                        var sp3 = (this.outs[this.vStation(data.beUser)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
                         arr.push(sp1);
                         arr.push(sp2);
                         arr.push(sp3);
                     } else {
-                        var sp1 = this.getACardInTheScene(data.byPs, view, true);
-                        var sp2 = this.getACardInTheScene(data.byPs, view, true);
-                        var sp3 = (this.outs[this.vStation(data.byBePeng)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        var sp1 = this.getAHandCard(data.byPs, view);
+                        var sp2 = this.getAHandCard(data.byPs, view);
+                        var sp3 = (this.outs[this.vStation(data.beUser)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
                         arr.push(sp1);
                         arr.push(sp2);
                         arr.push(sp3);
@@ -282,56 +309,89 @@ module uiview {
                 case 5:
                     //bu gang
                     if (data.byUser == this.m_client.m_myDesk) {
-                        var sp = this.getACardInHand(data.byPs);
+                        var sp = this.getMyHandCard(data.byPs);
                         arr.push(sp);
                     } else {
-                        var sp = this.getACardInTheScene(data.byPs, view, true);
+                        var sp = this.getAHandCard(data.byPs, view);
                         arr.push(sp);
                     }
                     break;
                 case 6:
-                //ming gang
+                    //ming gang
+                    break;
             }
             (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addOneBlock(arr);
         }
 
-        getACardInTheScene(val: number, view: number, exchange = false): Laya.Sprite3D {
-            //find in the wall,remove as the last
+        exchangePos(o1: Laya.Sprite3D, o2: Laya.Sprite3D) {
+            var tPos = o1.transform.localPosition;
+            var tRot = o1.transform.localRotationEuler;
+            o1.transform.localPosition = o2.transform.localPosition;
+            o1.transform.localRotationEuler = o2.transform.localRotationEuler;
+            o2.transform.localPosition = tPos;
+            o2.transform.localRotationEuler = tRot;
+        }
+
+        //找到一张牌和手牌中的最后一张交换(并移除)
+        getAHandCard(val: number, view: number) {
             var idx = (this.wall.getComponentByType(script.wallCtrl) as script.wallCtrl).getChildByVal(val);
             if (idx != -1) {
-                //为了之后的动画考虑,找到的牌和牌堆里最后一张牌进行交换(位置)
+                var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
+                var sp = this.wall.removeChildAt(idx) as Laya.Sprite3D;
+                this.wall.addChildAt(last, idx);
+                this.exchangePos(sp, last);
+                return sp;
+            }
+            for (let i = 0; i < this.hands.length; ++i) {
+                if (i == 1)
+                    continue;
+                var sp = (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
+                if (sp == null)
+                    continue;
+                if (i != view) {
+                    var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
+                    this.exchangePos(last, sp);
+                    (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
+                }
+                //else pos
+                return sp;
+            }
+            console.log("can not find card " + val);
+            return null;
+        }
+
+        //找到一张牌和牌墙的最后一张牌交换(并移除)
+        getAWallCard(val: number) {
+            var idx = (this.wall.getComponentByType(script.wallCtrl) as script.wallCtrl).getChildByVal(val);
+            if (idx != -1) {
                 var last = this.wall.getChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
                 var sp = this.wall.removeChildAt(idx) as Laya.Sprite3D;
                 if (idx < this.wall.numChildren) {
+                    this.exchangePos(last, sp);
                     this.wall.setChildIndex(last, idx);
-                    last.transform.localPosition = sp.transform.localPosition;
-                    last.transform.localRotationEuler = sp.transform.localRotationEuler;
+                    // last.transform.localPosition = sp.transform.localPosition;
+                    // last.transform.localRotationEuler = sp.transform.localRotationEuler;
                 }
                 //sp.pos
                 return sp;
             }
-            //then find in other hand
-            for (let i = 0; i < 4; ++i) {
+            for (let i = 0; i < this.hands.length; ++i) {
                 if (i == 1)
                     continue;
                 var sp = (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
-                if (sp != undefined) {
-                    if (exchange) {
-                        if (view != i) {
-                            var last = this.hands[view].removeChildAt(this.hands[view].numChildren - 1) as Laya.Sprite3D;
-                            (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
-                        }
-                    } else {
-                        var last = this.wall.getChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
-                        (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
-                    }
-                    return sp;
-                }
+                if (sp == null)
+                    continue;
+                var last = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
+                this.exchangePos(last, sp);
+                (this.hands[i].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(last);
+                return sp;
             }
-            return undefined;
+
+            console.log("can not find card " + val + " in wall");
+            return null;
         }
 
-        getACardInHand(val: number): Laya.Sprite3D {
+        getMyHandCard(val: number): Laya.Sprite3D {
             var o = (this.hands[1].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
             return o;
         }
@@ -362,6 +422,32 @@ module uiview {
                 return;
             }
 
+        }
+
+        create2DCards(data, cpg) {
+            var p = new Laya.Sprite();
+            var idx = 0;
+            //cpg...
+
+            //hand
+            for (let i = 0; i < data.length; ++i) {
+                if (data[i] == 255)
+                    break;
+                var sp = this.create2dmah(data[i]);
+                sp.pos(idx + i * sp.width, 0);
+                p.addChild(sp);
+            }
+            return p;
+        }
+
+        create2dmah(val) {
+            var sp = new Laya.Image();
+            sp.skin = "small_mj/outcard_bg.png";
+            var v = new Laya.Image();
+            v.skin = "small_mj/" + val + ".png";
+            v.pos((sp.width - v.width) * 0.5, (sp.height - v.height) * 0.5 - 6);
+            sp.addChild(v);
+            return sp;
         }
     }
 }

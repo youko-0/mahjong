@@ -1,6 +1,6 @@
 module uiview.home {
     export class inputView extends ui.inputViewUI {
-        constructor() {
+        constructor(func = 0) {
             super();
             for (let i = 1; i < 11; ++i) {
                 this.getChildAt(i).on(Laya.Event.CLICK, this, () => {
@@ -8,8 +8,8 @@ module uiview.home {
                     if (len >= 6) {
                         return;
                     }
-                    this.text.text += i-1;
-                    if (len == 5) {
+                    this.text.text += i - 1;
+                    if (func == 0 && len == 5) {
                         homeView.instance.joinDesk(this.text.text);
                     }
                 })
@@ -20,9 +20,16 @@ module uiview.home {
                     return;
                 this.text.text = str.substr(0, str.length - 1);
             });
-            this.getChildAt(12).on(Laya.Event.CLICK, this, () => {
-                this.text.text = "";
-            });
+            if (func == 0) {
+                this.getChildAt(12).on(Laya.Event.CLICK, this, () => {
+                    this.text.text = "";
+                });
+            } else {
+                this.getChildAt(12).on(Laya.Event.CLICK, this, () => {
+                    this.text.text = "";
+                });
+            }
+
         }
     }
 }

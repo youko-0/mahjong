@@ -80,6 +80,26 @@ P 329414EE turn_pos_1.png
 P 1BA7E3E1 turn_pos_2.png
 P 3D1BAA63 turn_pos_3.png
 P 48357896 turn_pos_bg.png
+D group
+P BD305BB8 btnClose.png
+P C132A8F6 btnCreate.png
+P D65CE6E7 btnJoin.png
+P 9FAA43F9 btnJoinD.png
+P B9B6FBA7 btnJoinG.png
+P BBFD5A23 btnMyG.png
+P E9EFB6DE btnQuitG.png
+P 56288BAD btnRefresh.png
+R 28381BF4 item_bg.png
+P A62287C2 txt_date.png
+P CF834A32 txt_gNo.png
+P DDCC4355 txt_id.png
+P 0D7AD0DA txt_least.png
+P 7C612AFE txt_name.png
+P B467A03B txt_nick.png
+P 5C08D353 txt_No.png
+P 10FD7DCD txt_op.png
+P 378BD150 txt_round.png
+P 29A34ED8 txt_rule.png
 D home
 P F07B44BB brodcast.png
 P 0073C9D5 hall_notice.png
@@ -103,3 +123,44 @@ D login
 P 0D7A1760 btn_login.png
 R 0047A4F3 login_bg.png
 R 4CCA6F96 logo.png
+D nonepack
+R 907A6CD7 allBg.png
+R 28381BF4 item_bg.png
+D rank
+P BD305BB8 btnClose.png
+D game/small_mj
+P B0F78AA6 1.png
+P 4FB20779 11.png
+P D93B2B42 12.png
+P F5DF8110 13.png
+P 1DC45AF4 14.png
+P C3395720 15.png
+P A3844AF0 16.png
+P 256CEB6C 17.png
+P C7D447E9 18.png
+P A315BEAC 19.png
+P CE8BA735 2.png
+P B0CCF84B 21.png
+P 1F1F8B60 22.png
+P FD02A5B1 23.png
+P 83D3ABA3 24.png
+P E51B9382 25.png
+P A07FFEDD 26.png
+P 91FFCC1A 27.png
+P 64E6196D 28.png
+P 4CA2CF06 29.png
+P 45782DF5 3.png
+P 6F58D81F 31.png
+P 0559A3A1 32.png
+P 509D7FF9 33.png
+P 5B238779 34.png
+P 68AEFCF2 35.png
+P B22E3130 36.png
+P 20EAD260 37.png
+P EFED3C74 4.png
+P 2D394705 5.png
+P 8F3AA2DA 6.png
+P 64F34B75 7.png
+P 9A1E2C10 8.png
+P D97E7FBA 9.png
+P D685A731 outcard_bg.png

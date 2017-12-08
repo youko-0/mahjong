@@ -36,11 +36,12 @@ module network {
 
         }
 
-        public static pushValue(url: string, key, value): void {
+        public static pushValue(url: string, key, value): string {
             if (url.lastIndexOf("?") != url.length - 1) {
                 url += "&";
             }
             url += key + "=" + value;
+            return url;
         }
     }
 }

@@ -206,17 +206,27 @@ module game {
                     break;
                 case 31:
                     //notifyPeng
-                    uiview.gameView.instance.addBlock(data);
+                    let d = {
+                        byUser: data.byUser,
+                        beUser: data.byBePeng,
+                        byPs: data.byPs,
+                        byType: 2
+                    }
+                    uiview.gameView.instance.addBlock(d);
                     break;
                 case 34:
                     //notifyGang
-                    uiview.gameView.instance.addBlock(data);
-                    break;
-                case 37:
-                    //notifyTing
+                    let dd = {
+                        byUser: data.byUser,
+                        beUser: data.byBeGang,
+                        byPs: data.byPs,
+                        byType: data.byType
+                    }
+                    uiview.gameView.instance.addBlock(dd);
                     break;
                 case 36:
                     //notifyHu
+                    uiview.gameView.instance.notifyHu(data);
                     break;
                 case 37:
                     //countFen
