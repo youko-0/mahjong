@@ -6,11 +6,15 @@ module uiview.home {
             homeView.instance = this;
             this.btnCreate.on(Laya.Event.CLICK, this, this.onBtnCreate);
             this.btnJoin.on(Laya.Event.CLICK, this, this.onBtnJoin);
+
+            this.btnRecord.on(Laya.Event.CLICK,this,this.showRecord);
             this.joinDesk("000000");
+            this.setUserInfo();
         }
 
         showRecord(bShow) {
-
+            this.viewRank.visible = true;
+            this.viewRank.getMyRecord();
         }
 
         showActivity(bShow) {
@@ -28,6 +32,10 @@ module uiview.home {
 
         onBtnCreate() {
             this.viewCreate.visible = true;
+        }
+
+        setUserInfo() {
+            this.head.skin = network.http.webRoot + "/Image/head/" + game.userInfo.userId + "_head.png";
         }
 
         joinDesk(pwd) {

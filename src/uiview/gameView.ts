@@ -13,7 +13,7 @@ module uiview {
         constructor() {
             super();
             gameView.instance = this;
-
+            console.log(Math.floor(7 / 3));
             Laya.loader.load(game.uiAtlas.tiles, Laya.Handler.create(this, this.onLoaded))
 
             //wan tiao tong

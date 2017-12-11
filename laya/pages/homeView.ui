@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":20,
+    "selecteID":18,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -112,6 +112,31 @@
         },
         {
             "x":15,
+            "type":"Image",
+            "props":{"y":137,"x":516,"skin":"home/brodcast.png","name":"brodcast"},
+            "nodeParent":1,
+            "label":"Image(brodcast)",
+            "isOpen":false,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":19,
+            "child":[
+                {
+                    "type":"Image",
+                    "props":{"skin":"home/main_brodcast_bg.png"},
+                    "nodeParent":19,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":23,
+                    "child":[
+                        ]
+                }]
+        },
+        {
+            "x":15,
             "type":"Button",
             "props":{"y":164,"x":880,"var":"btnJoin","stateNum":"1","skin":"home/main_btn_join.png"},
             "nodeParent":1,
@@ -135,6 +160,21 @@
             "compId":9,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"groupView.ui",
+            "props":{"y":0,"x":0,"var":"viewgroup","runtime":"uiview.home.groupView","mouseThrough":true},
+            "nodeParent":1,
+            "label":"UIView(viewgroup)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":18,
+            "child":[
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -169,14 +209,14 @@
         {
             "x":15,
             "type":"UIView",
-            "source":"groupView.ui",
-            "props":{"y":0,"x":0,"var":"viewgroup","runtime":"uiview.home.groupView"},
+            "source":"rankView.ui",
+            "props":{"visible":false,"var":"viewRank","runtime":"uiview.home.rankView"},
             "nodeParent":1,
-            "label":"UIView(viewgroup)",
+            "label":"UIView(viewRank)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":18,
+            "compId":22,
             "child":[
                 ],
             "$HIDDEN":true
@@ -184,28 +224,27 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":139,"x":458,"skin":"home/brodcast.png"},
+            "props":{"y":19,"x":48,"skin":"home/main_headbox.png"},
             "nodeParent":1,
             "label":"Image",
-            "isDirectory":false,
+            "isOpen":false,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
-            "compId":19,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":31,"x":33,"skin":"home/main_headbox.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
+            "hasChild":true,
             "compId":20,
             "child":[
-                ]
+                {
+                    "type":"Image",
+                    "props":{"y":11,"x":11,"width":72,"var":"head","height":72},
+                    "nodeParent":20,
+                    "label":"Image(head)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":21,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {

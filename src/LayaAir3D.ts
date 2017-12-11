@@ -8,7 +8,7 @@ class LayaAir3D {
         Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_WIDTH;
         Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;
         //开启统计信息
-        Laya.Stat.show();
+        //Laya.Stat.show();
         Laya.loader.load(game.uiAtlas.login, Laya.Handler.create(this, this.onLoaded));
     }
 

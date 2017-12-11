@@ -5,7 +5,7 @@
 			"name": "layaAir",
 			"type": "chrome",
 			"request": "launch",
-			"url": "${workspaceRoot}/bin/index.html?token=h5",
+			"url": "${workspaceRoot}/bin/index.html?token=h1",
 			"runtimeExecutable": "${execPath}",
 			"useBuildInServer": true,
 			"sourceMaps": true,
