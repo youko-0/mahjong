@@ -1,0 +1,44 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var disView = (function (_super) {
+        __extends(disView, _super);
+        function disView() {
+            var _this = _super.call(this) || this;
+            _this.m_rest = 0;
+            _this.btnAgree.on(Laya.Event.CLICK, _this, function () {
+                game.gameClient.instance.m_ws.Send(180, 136, 1);
+            });
+            _this.btnRefuse.on(Laya.Event.CLICK, _this, function () {
+                game.gameClient.instance.m_ws.Send(180, 136, 2);
+            });
+            return _this;
+        }
+        //秒
+        disView.prototype.showTimer = function (time) {
+            this.m_rest = time;
+            this.tim.text = "" + this.m_rest;
+            Laya.timer.loop(1000, this, this._updateTimer);
+        };
+        disView.prototype._updateTimer = function () {
+            --this.m_rest;
+            if (this.m_rest < 0) {
+                Laya.timer.clear(this, this._updateTimer);
+                return;
+            }
+            this.tim.text = "" + this.m_rest;
+        };
+        return disView;
+    }(ui.disViewUI));
+    uiview.disView = disView;
+})(uiview || (uiview = {}));
+//# sourceMappingURL=disView.js.map

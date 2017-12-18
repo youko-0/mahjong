@@ -1,0 +1,109 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home_1) {
+        var loginView = /** @class */ (function (_super) {
+            __extends(loginView, _super);
+            function loginView() {
+                var _this = _super.call(this) || this;
+                _this.btnLogin.on(Laya.Event.CLICK, _this, _this.onBtnLogin);
+                _this.input.visible = !Laya.Browser.onMobile;
+                return _this;
+            }
+            loginView.prototype.onBtnLogin = function () {
+                var _this = this;
+                if (!Laya.Browser.onMobile) {
+                    if (this.input.text != "TextInput") {
+                        var str = this.input.text;
+                        this.loginByToken(str, str);
+                    }
+                    else {
+                        this.loginByToken(game.userInfo.token, game.userInfo.token);
+                    }
+                    // if (game.userInfo.token != undefined) {
+                    //     this.loginByToken(game.userInfo.token, game.userInfo.token);
+                    // } else {
+                    //     var str = this.input.text;
+                    //     this.loginByToken(str, str);
+                    // }
+                }
+                else {
+                    if (Laya.Browser.onAndriod) {
+                        var WxMgr = Laya.PlatformClass.createClass("WxManager");
+                        var wxmgr = WxMgr.newObject();
+                        wxmgr.callWithBack(function (code) {
+                            _this.wechatCallback(code);
+                        }, "OnWxLogin");
+                    }
+                    if (Laya.Browser.onIOS) {
+                        var WxMgr = Laya.PlatformClass.createClass("WxManager");
+                        var wxmgr = WxMgr.newObject();
+                        wxmgr.callWithBack(function (code) {
+                            _this.wechatCallback(code);
+                        }, "OnWxLogin");
+                    }
+                }
+            };
+            loginView.prototype.wechatCallback = function (code) {
+                var _this = this;
+                console.log("wechat Callback :" + code);
+                var wechat_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + "wx57ff44de7c2b8048" + "&secret=" + "5691f57f24be80e7e71524fdd973a6f1" + "&code=" + code + "&grant_type=authorization_code";
+                var url_path = "data_interface/weixin_login.aspx";
+                var str_param = "page_action=weixin_login&weixin_url=";
+                var encode_url = encodeURIComponent(wechat_url); //这个函数会把？之类的也编码，encodeURI则不会
+                str_param += encode_url;
+                network.http.postUrl(url_path, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        return;
+                    }
+                    _this.loginByToken(resp.open_id, resp.access_token);
+                }, str_param);
+            };
+            loginView.prototype.loginByToken = function (open_id, token) {
+                var _this = this;
+                var url = "data_interface/login.aspx";
+                // http.pushValue(url,"open_id",str);
+                // http.pushValue(url,"token",str);
+                game.userInfo.token = token;
+                url += "?open_id=" + open_id;
+                url += "&token=" + token;
+                network.http.getUrl(url, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        return;
+                    }
+                    game.userInfo.userId = resp.data.userId;
+                    game.userInfo.gold = resp.data.gold;
+                    game.userInfo.md5 = resp.data.md5;
+                    Laya.loader.load(game.uiAtlas.home, Laya.Handler.create(_this, _this.onLoaded));
+                });
+            };
+            loginView.prototype.onLoaded = function () {
+                var home = new home_1.homeView(); //new ;uiview.gameView()
+                Laya.stage.addChild(home);
+                this.removeSelf();
+                Laya.loader.clearRes(game.uiAtlas.login);
+                // network.http.downloadZip('http://192.168.1.109:8001/log/114_4.zip', (msg) => {
+                //     Laya.timer.loop(1000, this, () => {
+                //         uiview.gameView.instance.m_client.OnMessage(JSON.parse(msg[this.idx]));
+                //         ++this.idx;
+                //     });
+                // });
+            };
+            return loginView;
+        }(ui.loginViewUI));
+        home_1.loginView = loginView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=loginView.js.map

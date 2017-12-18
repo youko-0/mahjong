@@ -3,8 +3,13 @@ module uiview {
         constructor() {
             super();
             this.btnCon.on(Laya.Event.CLICK, this, () => {
-                gameView.instance.m_client.m_ws.SendEmpty(180, 1);
-                gameView.instance.clearUI();
+                if (game.gameClient.instance.bOver) {
+                    gameView.instance.onBack();
+                } else {
+                    gameView.instance.m_client.m_ws.SendEmpty(180, 1);
+                    gameView.instance.clearUI();
+                }
+
             });
         }
 

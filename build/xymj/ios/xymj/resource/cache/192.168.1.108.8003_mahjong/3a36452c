@@ -1,0 +1,61 @@
+var network;
+(function (network) {
+    var ws = /** @class */ (function () {
+        function ws(url) {
+            if (url === void 0) { url = "ws://127.0.0.1:6002"; }
+            var _this = this;
+            this._ws = new WebSocket(url);
+            this._ws.addEventListener("message", function (ev) {
+                var da = JSON.parse(ev.data);
+                if (da.head.bMainID !== 1 && da.head.bAssistantID !== 1) {
+                    console.log(ev.data);
+                }
+                if (_this.OnMessage != null) {
+                    _this.OnMessage(da);
+                }
+            });
+            this._ws.addEventListener("open", function () {
+                console.log("ws opened!");
+                if (_this.OnOpen != null) {
+                    _this.OnOpen();
+                }
+            }, false);
+            this._ws.addEventListener("close", function (e) {
+                console.log("Connection closed" + e.code + " " + e.reason);
+                if (_this.OnClose != null) {
+                    _this.OnClose();
+                }
+            }, false);
+        }
+        ws.prototype.Send = function (mainId, assId, d, handleCode, messageSize) {
+            if (handleCode === void 0) { handleCode = 0; }
+            if (messageSize === void 0) { messageSize = 1; }
+            var data = {
+                uMessageSize: messageSize,
+                bMainID: mainId,
+                bAssistantID: assId,
+                bHandleCode: handleCode,
+                bReserve: 0,
+                data: JSON.stringify(d)
+            };
+            this._ws.send(JSON.stringify(data));
+        };
+        ws.prototype.SendEmpty = function (mainId, assId, handleCode) {
+            if (handleCode === void 0) { handleCode = 0; }
+            var data = {
+                uMessageSize: 0,
+                bMainID: mainId,
+                bAssistantID: assId,
+                bHandleCode: handleCode,
+                bReserve: 0
+            };
+            this._ws.send(JSON.stringify(data));
+        };
+        ws.prototype.Close = function () {
+            this._ws.close();
+        };
+        return ws;
+    }());
+    network.ws = ws;
+})(network || (network = {}));
+//# sourceMappingURL=ws.js.map

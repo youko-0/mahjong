@@ -1,0 +1,43 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home) {
+        var createView = /** @class */ (function (_super) {
+            __extends(createView, _super);
+            function createView() {
+                var _this = _super.call(this) || this;
+                _this.btnCreate.on(Laya.Event.CLICK, _this, _this.createDesk);
+                return _this;
+            }
+            createView.prototype.createDesk = function () {
+                game.gameInfo.nameId = 60015441;
+                var url = "/app/userlogin.aspx?user_id=" + game.userInfo.userId + "&token=" + game.userInfo.token;
+                var round = (this.grpRound.selectedIndex + 1) * 8;
+                var count = 4;
+                var jsonRule = {};
+                var url2 = "/data_interface/desk_mng.aspx?page_action=create_desk&game_id=" + game.gameInfo.nameId + "&max_pople=" + count + "&round_times=" + round + "&json_rule=" + encodeURI(JSON.stringify(jsonRule));
+                url += "&url=" + url2;
+                network.http.getUrl(url, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        return;
+                    }
+                    home.homeView.instance.joinDesk("000000");
+                });
+            };
+            return createView;
+        }(ui.createViewUI));
+        home.createView = createView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=createView.js.map

@@ -1,0 +1,92 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home) {
+        var groupView = /** @class */ (function (_super) {
+            __extends(groupView, _super);
+            function groupView() {
+                var _this = _super.call(this) || this;
+                _this.btnMyGrp.on(Laya.Event.CLICK, _this, _this.onBtnGrp);
+                _this.btnMyDesk.on(Laya.Event.CLICK, _this, _this.onBtnDesk);
+                _this.rootView.getChildByName('close').on(Laya.Event.CLICK, _this, function () {
+                    _this.rootView.visible = false;
+                });
+                return _this;
+            }
+            groupView.prototype.onBtnGrp = function () {
+                var _this = this;
+                this.rootView.visible = true;
+                this.listG.visible = true;
+                this.listD.visible = false;
+                var kurl = '/app/userlogin.aspx?';
+                kurl = network.http.pushValue(kurl, 'user_id', game.userInfo.userId);
+                kurl = network.http.pushValue(kurl, 'token', game.userInfo.token);
+                var rurl = '/data_interface/desk_mng.aspx?';
+                rurl = network.http.pushValue(rurl, 'page_action', 'get_my_group_list');
+                kurl = network.http.pushValue(kurl, 'url', rurl);
+                network.http.getUrl(kurl, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        _this.listG.array = [];
+                        return;
+                    }
+                    var dArr = [];
+                    for (var i = 0; i < resp.data.length; ++i) {
+                        var da = {
+                            id: { text: resp.data[i].group_id },
+                            name: { text: resp.data[i].group_name },
+                            rate: { text: resp.data[i].multiplying_factor },
+                            my: { text: resp.data[i].user_credit },
+                            least: { text: resp.data[i].least_credit },
+                            status: { visible: resp.data[i].is_disabled == "1" },
+                            create: { visible: resp.data[i].is_disabled == "0" },
+                            quit: { visible: resp.data[i].is_disabled == "0" }
+                        };
+                        dArr.push(da);
+                    }
+                    _this.listG.array = dArr;
+                });
+            };
+            groupView.prototype.onBtnDesk = function () {
+                var _this = this;
+                this.rootView.visible = true;
+                this.listG.visible = false;
+                this.listD.visible = true;
+                var kurl = '/app/userlogin.aspx?';
+                kurl = network.http.pushValue(kurl, 'user_id', game.userInfo.userId);
+                kurl = network.http.pushValue(kurl, 'token', game.userInfo.token);
+                var rurl = '/data_interface/desk_mng.aspx?';
+                rurl = network.http.pushValue(rurl, 'page_action', 'get_my_group_desk_list');
+                kurl = network.http.pushValue(kurl, 'url', rurl);
+                network.http.getUrl(kurl, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        _this.listD.array = [];
+                        return;
+                    }
+                    var dArr = [];
+                    for (var i = 0; i < resp.data.length; ++i) {
+                        var da = {
+                            rule: { text: resp.data[i].describe }
+                        };
+                        dArr.push(da);
+                    }
+                    _this.listD.array = dArr;
+                });
+            };
+            return groupView;
+        }(ui.groupViewUI));
+        home.groupView = groupView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=groupView.js.map

@@ -66,7 +66,7 @@ module script {
                 var sp = this.wall.getChildAt(i) as Laya.Sprite3D;
                 var view = Math.floor(i / 34);
                 //transform.rotate是在原先旋转的基础上继续旋转,因为会多次计算位置,直接设置旋转角
-                sp.transform.localRotationEuler = new Vector3(90, (view - 1) * 90, 0);
+                sp.transform.localRotationEuler = new Vector3(-90, (view - 1) * 90, 0);
                 var dstX = 0.03 * (Math.floor(i / 2) % 17 - 8.5);
                 var pos = new Vector3();
                 pos.y = (i % 2) * 0.02;   //(i+1)%2

@@ -26,6 +26,9 @@ module script {
                 this._outHitInfo = new Laya.RaycastHit();
                 Laya.stage.on(Laya.Event.DOUBLE_CLICK, this, this.hitCtrl);
             }
+            // console.log(this.hand.transform.localRotationEuler + " " + this.hand.transform.rotationEuler);
+            // var vec = this.hand.transform.localRotationEuler;
+            // this.hand.transform.localRotationEuler = new Vector3(vec.x, vec.y, vec.z);
         }
 
         addCards(data) {
@@ -42,8 +45,8 @@ module script {
                 }
             }
             this.slideChildren(idx, 0.03);
-            o.transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
-            o.transform.localRotationEuler = new Vector3(0, 180, 0);  //朝向反的
+            o.transform.localPosition = new Vector3(-idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //这里x全部取负
+            o.transform.localRotationEuler = new Vector3(0, 0, 0);
             this.hand.addChild(o);
             this.hand.setChildIndex(o, idx);
             o.layer = Laya.Layer.getLayerByNumber(this.view === 1 ? 1 : 0);
@@ -52,9 +55,11 @@ module script {
         //瞎往后放一张(背面)
         justAddCard(o: Laya.Sprite3D) {
             let idx = this.hand.numChildren;
-            o.transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
-            o.transform.localRotationEuler = new Vector3(0, 180, 0);  //朝向反的
             this.hand.addChild(o);
+            o.transform.localRotationEuler = new Vector3(0, 0, 0);
+            o.transform.localPosition = new Vector3(-idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //这里x全部取负
+
+
             o.layer = Laya.Layer.getLayerByNumber(0);
         }
 
@@ -72,19 +77,34 @@ module script {
             return o;
         }
 
-        addOneBlock(os: Laya.Sprite3D[]) {
-            for (let i = 0; i < os.length; ++i) {
+        addOneBlock(os: Laya.Sprite3D[], back = false) {
+            if (os.length == 1) {
+                //补杠
+                for (let i = 0; i < this.startIdx; ++i) {
+                    if (this.getValByName(this.hand.getChildAt(i)) == this.getValByName(os[0])) {
+                        this.hand.getChildAt(i + 1).addChild(os[0]);
+                        os[0].layer = Laya.Layer.getLayerByNumber(0);
+                        os[0].transform.localRotationEuler = new Vector3();
+                        os[0].transform.localPosition = new Vector3(0, 0, 0.02);
+                        return;
+                    }
+                }
+            }
+            for (let i = 0; i < 3; ++i) {
                 let idx = this.startIdx + i;
-                if (i == 3)
-                    os[i].transform.localPosition = new Vector3(os[1].transform.localPosition.x, 0.01, 0);
-                else
-                    os[i].transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //因为要转180度,这里x全部取负
-                os[i].transform.localRotationEuler = new Vector3(this.view == 1 ? -30 : -90, 180, 0);  //朝向反的
+                os[i].transform.localPosition = new Vector3(- idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0);   //这里x全部取负
+                os[i].transform.localRotationEuler = new Vector3(this.view == 1 ? 30 : 90, 0, 0);
                 this.hand.addChild(os[i]);
                 this.hand.setChildIndex(os[i], idx);
                 os[i].layer = Laya.Layer.getLayerByNumber(0);
             }
-            this.startIdx += os.length;
+            if (os.length == 4) {
+                os[1].addChild(os[3]);
+                os[3].layer = Laya.Layer.getLayerByNumber(0);
+                os[3].transform.localRotationEuler = new Vector3();
+                os[3].transform.localPosition = new Vector3(0, 0, 0.02);
+            }
+            this.startIdx += 3;
             this.slideChildren(this.startIdx, 0.1);     //0.03*3+0.01
         }
 
@@ -118,7 +138,7 @@ module script {
 
         slideChildren(idx, offset) {
             for (let i = idx; i < this.hand.numChildren; ++i) {
-                (this.hand.getChildAt(i) as Laya.Sprite3D).transform.translate(new Vector3(offset, 0, 0));
+                (this.hand.getChildAt(i) as Laya.Sprite3D).transform.translate(new Vector3(-offset, 0, 0));
             }
         }
 

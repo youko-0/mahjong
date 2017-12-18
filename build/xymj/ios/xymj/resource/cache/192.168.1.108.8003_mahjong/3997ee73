@@ -1,0 +1,81 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var setView = /** @class */ (function (_super) {
+        __extends(setView, _super);
+        function setView() {
+            var _this = _super.call(this) || this;
+            _this.m_rest = 60;
+            _this.btnAgree.on(Laya.Event.CLICK, _this, function () {
+                game.gameClient.instance.m_ws.Send(180, 136, { value_: 1 });
+            });
+            _this.btnRefus.on(Laya.Event.CLICK, _this, function () {
+                game.gameClient.instance.m_ws.Send(180, 136, { value_: 2 });
+            });
+            _this.setRoot.getChildByName('close').on(Laya.Event.CLICK, _this, function () {
+                _this.visible = false;
+            });
+            _this.btnReqDis.on(Laya.Event.CLICK, _this, _this.onBtnReqDismiss);
+            return _this;
+        }
+        setView.prototype.onBtnReqDismiss = function () {
+            game.gameClient.instance.m_ws.SendEmpty(180, 138);
+            if (game.gameClient.instance.m_status == 0) {
+                uiview.gameView.instance.onBack();
+            }
+        };
+        //秒
+        setView.prototype.showTimer = function (time) {
+            this.m_rest = time;
+            this.tim.text = "" + this.m_rest;
+            Laya.timer.loop(1000, this, this._updateTimer);
+        };
+        setView.prototype._updateTimer = function () {
+            --this.m_rest;
+            if (this.m_rest < 0) {
+                Laya.timer.clear(this, this._updateTimer);
+                return;
+            }
+            this.tim.text = "" + this.m_rest;
+        };
+        setView.prototype.showDismiss = function () {
+            this.visible = true;
+            this.disRoot.visible = true;
+            this.setRoot.visible = false;
+            var arr = [];
+            for (var i = 0; i < 4; ++i) {
+                if (game.gameClient.instance.m_dismiss[i] == 2) {
+                    game.gameClient.instance.m_dismiss = [0, 0, 0, 0];
+                    Laya.timer.clear(this, this._updateTimer);
+                    this.m_rest = 60;
+                    return;
+                }
+                var da = {
+                    sta: { text: game.gameClient.instance.m_dismiss[i] == 1 ? '同意解散' : '等待解散' }
+                };
+                arr.push(da);
+            }
+            this.list.array = arr;
+            this.btnRefus.visible = game.gameClient.instance.m_dismiss[game.gameClient.instance.m_myDesk] != 1;
+            this.btnAgree.visible = game.gameClient.instance.m_dismiss[game.gameClient.instance.m_myDesk] != 1;
+            this.showTimer(60);
+        };
+        setView.prototype.showSet = function () {
+            this.visible = true;
+            this.disRoot.visible = false;
+            this.setRoot.visible = true;
+        };
+        return setView;
+    }(ui.setViewUI));
+    uiview.setView = setView;
+})(uiview || (uiview = {}));
+//# sourceMappingURL=setView.js.map

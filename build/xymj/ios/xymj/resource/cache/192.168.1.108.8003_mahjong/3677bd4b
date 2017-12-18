@@ -1,0 +1,49 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var game;
+(function (game) {
+    var player = (function (_super) {
+        __extends(player, _super);
+        function player() {
+            var _this = _super.call(this) || this;
+            _this.head = null;
+            _this.status = null;
+            console.log("player init");
+            return _this;
+        }
+        Object.defineProperty(player.prototype, "owner", {
+            set: function (v) {
+                this._owner = v;
+                console.log(this._owner == null);
+                console.log(this._no);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(player.prototype, "no", {
+            get: function () {
+                return this._no;
+            },
+            set: function (n) {
+                this._no = n;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        player.prototype.setHead = function (uri) {
+            //this.head.graphics.clear();
+            this.head.loadImage(uri);
+        };
+        return player;
+    }(Laya.Node));
+    game.player = player;
+})(game || (game = {}));
+//# sourceMappingURL=player.js.map

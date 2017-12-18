@@ -10,10 +10,12 @@ module uiview {
         hands: Laya.Sprite3D[] = [];
         outs: Laya.Sprite3D[] = [];
         wall: Laya.Sprite3D;
-        constructor() {
+
+        recordMsg = null;
+        constructor(msg = null) {
             super();
+            this.recordMsg = msg;
             gameView.instance = this;
-            console.log(Math.floor(7 / 3));
             Laya.loader.load(game.uiAtlas.tiles, Laya.Handler.create(this, this.onLoaded))
 
             //wan tiao tong
@@ -23,11 +25,11 @@ module uiview {
             }
 
             this.blocks.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnPeng);
-            //this.blocks.getChildAt(2).on(Laya.Event.CLICK, this, this.onBtnGang);
             this.blocks.getChildAt(3).on(Laya.Event.CLICK, this, this.onBtnHu);
             this.blocks.getChildAt(4).on(Laya.Event.CLICK, this, this.onBtnPass);
             (this.deskInfo.getChildAt(0) as Laya.Label).text = game.gameInfo.deskPwd + "";
             this.exchange.getChildAt(1).on(Laya.Event.CLICK, this, this.onBtnExchange);
+            this.btnSet.on(Laya.Event.CLICK, this, this.onBtnSet);
 
         }
         onLoaded() {
@@ -108,15 +110,6 @@ module uiview {
             this.m_client.m_ws.Send(180, 31, data);
         }
 
-        onBtnGang(val) {
-            var data = {
-                byUser: this.m_client.m_myDesk,
-                byBeGang: this.m_client.m_curPlayer,
-                byPs: val
-            }
-            this.m_client.m_ws.Send(180, 34, data);
-        }
-
         onBtnHu() {
             var data = {
                 byUser: this.m_client.m_myDesk,
@@ -160,6 +153,10 @@ module uiview {
             }
         }
 
+        onBtnSet() {
+            this.viewSet.showSet();
+        }
+
         gameBegin() {
 
             this.showFin(false);
@@ -167,6 +164,16 @@ module uiview {
 
         showFin(bShow) {
             this.fin.visible = bShow;
+            if (bShow) {
+
+            }
+        }
+
+        showDismiss(bShow) {
+            if (bShow)
+                this.viewSet.showDismiss();
+            else
+                this.viewSet.visible = false;
         }
 
 
@@ -184,17 +191,17 @@ module uiview {
                 for (let j = 0; j < data.m_byArHandPai[i].length; ++j) {
                     if (data.m_byArHandPai[i][j] == 255)
                         break;
-                    if (i == game.gameClient.instance.m_myDesk) {
+                    if (data.m_byArHandPai[i][j] != 0) {
                         var sp = this.getAWallCard(data.m_byArHandPai[i][j]);
                         (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
                     } else {
                         var sp = this.wall.removeChildAt(this.wall.numChildren - 1) as Laya.Sprite3D;
-                        (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).addCard(sp);
+                        (this.hands[this.vStation(i)].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(sp);
                     }
                 }
             }
 
-            this.players.getChildAt(this.vStation(this.m_client.m_myDesk)).addChild(this.create2DCards(data.m_byArHandPai[this.m_client.m_myDesk], null));
+            //this.players.getChildAt(this.vStation(game.gameClient.instance.m_myDesk)).addChild(this.create2DCards(data.m_byArHandPai[this.m_client.m_myDesk], null));
         }
 
         //用于断线重连的,出的牌不在手上
@@ -246,7 +253,7 @@ module uiview {
             var desk = data.byUser;
             var view = this.vStation(desk);
             var o: Laya.Sprite3D;
-            if (desk == this.m_client.m_myDesk) {
+            if (data.byPs != 255) {
                 o = this.getAWallCard(data.byPs);
                 (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addCard(o);
             } else {
@@ -280,6 +287,10 @@ module uiview {
 
         notifyHu(data) {
             this.blocks.visible = false;
+            if (!data.bZimo) {
+                var sp = (this.outs[this.vStation(data.byDianPao)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                (this.hands[this.vStation(data.byUser)].getComponentByType(script.handCtrl) as script.handCtrl).justAddCard(sp);
+            }
         }
 
         addBlock(data) {
@@ -306,6 +317,27 @@ module uiview {
                         arr.push(sp3);
                     }
                     break;
+                case 4:
+                    //an gang
+                    if (data.byUser == this.m_client.m_myDesk) {
+                        var sp1 = this.getMyHandCard(data.byPs);
+                        var sp2 = this.getMyHandCard(data.byPs);
+                        var sp3 = this.getMyHandCard(data.byPs);
+                        var sp4 = this.getMyHandCard(data.byPs);
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
+                        arr.push(sp4);
+                    } else {
+                        var sp1 = this.getAHandCard(data.byPs, view);
+                        var sp2 = this.getAHandCard(data.byPs, view);
+                        var sp3 = this.getAHandCard(data.byPs, view);
+                        var sp4 = this.getAHandCard(data.byPs, view);
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
+                        arr.push(sp4);
+                    }
                 case 5:
                     //bu gang
                     if (data.byUser == this.m_client.m_myDesk) {
@@ -318,6 +350,25 @@ module uiview {
                     break;
                 case 6:
                     //ming gang
+                    if (data.byUser == this.m_client.m_myDesk) {
+                        var sp1 = this.getMyHandCard(data.byPs);
+                        var sp2 = this.getMyHandCard(data.byPs);
+                        var sp3 = this.getMyHandCard(data.byPs);
+                        var sp4 = (this.outs[this.vStation(data.beUser)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
+                        arr.push(sp4);
+                    } else {
+                        var sp1 = this.getAHandCard(data.byPs, view);
+                        var sp2 = this.getAHandCard(data.byPs, view);
+                        var sp3 = this.getAHandCard(data.byPs, view);
+                        var sp4 = (this.outs[this.vStation(data.beUser)].getComponentByType(script.outCtrl) as script.outCtrl).getLastOutCard();
+                        arr.push(sp1);
+                        arr.push(sp2);
+                        arr.push(sp3);
+                        arr.push(sp4);
+                    }
                     break;
             }
             (this.hands[view].getComponentByType(script.handCtrl) as script.handCtrl).addOneBlock(arr);
@@ -393,6 +444,9 @@ module uiview {
 
         getMyHandCard(val: number): Laya.Sprite3D {
             var o = (this.hands[1].getComponentByType(script.handCtrl) as script.handCtrl).removeCard(val);
+            if (o == null) {
+                o = this.getAHandCard(val, 1);
+            }
             return o;
         }
 

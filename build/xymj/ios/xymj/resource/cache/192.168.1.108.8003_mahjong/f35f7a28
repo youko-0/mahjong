@@ -1,0 +1,44 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var finView = /** @class */ (function (_super) {
+        __extends(finView, _super);
+        function finView() {
+            var _this = _super.call(this) || this;
+            _this.btnCon.on(Laya.Event.CLICK, _this, function () {
+                if (game.gameClient.instance.bOver) {
+                    uiview.gameView.instance.onBack();
+                }
+                else {
+                    uiview.gameView.instance.m_client.m_ws.SendEmpty(180, 1);
+                    uiview.gameView.instance.clearUI();
+                }
+            });
+            return _this;
+        }
+        finView.prototype.setFinInfo = function (data) {
+            var dSource = [];
+            for (var i = 0; i < uiview.gameView.instance.m_client.users.length; ++i) {
+                dSource.push({
+                    nick: {
+                        skin: network.http.webRoot + "/Image/name/" + uiview.gameView.instance.m_client.users[i].userId + ".png"
+                    },
+                    score: { label: data.iTurePoint[i] + "" }
+                });
+            }
+            this.list.dataSource = dSource;
+        };
+        return finView;
+    }(ui.finViewUI));
+    uiview.finView = finView;
+})(uiview || (uiview = {}));
+//# sourceMappingURL=finView.js.map

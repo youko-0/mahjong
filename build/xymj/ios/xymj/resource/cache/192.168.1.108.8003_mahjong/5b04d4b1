@@ -1,0 +1,103 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var script;
+(function (script) {
+    var wallCtrl = /** @class */ (function (_super) {
+        __extends(wallCtrl, _super);
+        function wallCtrl() {
+            return _super.call(this) || this;
+        }
+        wallCtrl.prototype._load = function (own) {
+            this.wall = own;
+        };
+        wallCtrl.prototype._start = function () {
+            this.makeWall();
+        };
+        //一次性创建136张牌,后续仅仅调整牌的位置
+        wallCtrl.prototype.makeWall = function () {
+            var box = this.wall.parent.getChildByName("box");
+            var _scale = this.wall.transform.scale.x;
+            var offset = 0.3 * _scale;
+            for (var i = 0; i < 136; ++i) {
+                var idx = Math.floor(i / 4);
+                var sp = Laya.Sprite3D.instantiate(box.getChildAt(idx), this.wall, false);
+            }
+            //这里其实不需要摆出来,测试用的
+            //this.sortChildren();
+        };
+        wallCtrl.prototype.getValByIdx = function (idx) {
+            return this.wall.getChildAt(idx).name.substr(3);
+        };
+        wallCtrl.prototype.getChildByVal = function (val) {
+            for (var i = 0; i < this.wall.numChildren; ++i) {
+                if (this.wall.getChildAt(i).name.substr(3) == val)
+                    return i;
+            }
+            return -1;
+        };
+        //用于在一局结束后将所有牌回收
+        wallCtrl.prototype.pushCards = function (children) {
+            this.wall.addChildren(children);
+        };
+        //这里改变的是子节点的index,后续直接根据index计算位置
+        //顺便这个setChildIndex还真好用
+        wallCtrl.prototype.sortWalls = function (data) {
+            for (var i = 0; i < data.length; ++i) {
+                for (var j = i; j < this.wall.numChildren; ++j) {
+                    if (this.getValByIdx(j) == data[i]) {
+                        if (j != i) {
+                            this.wall.setChildIndex(this.wall.getChildAt(j), i);
+                        }
+                        break;
+                    }
+                }
+            }
+            this.sortChildren();
+        };
+        //对牌墙下的所有子节点根据索引计算摆放位置
+        wallCtrl.prototype.sortChildren = function () {
+            var offset = 0.3;
+            for (var i = 0; i < this.wall.numChildren; ++i) {
+                var sp = this.wall.getChildAt(i);
+                var view = Math.floor(i / 34);
+                //transform.rotate是在原先旋转的基础上继续旋转,因为会多次计算位置,直接设置旋转角
+                sp.transform.localRotationEuler = new Vector3(-90, (view - 1) * 90, 0);
+                var dstX = 0.03 * (Math.floor(i / 2) % 17 - 8.5);
+                var pos = new Vector3();
+                pos.y = (i % 2) * 0.02; //(i+1)%2
+                switch (view) {
+                    case 0:
+                        pos.x = -offset * game.gameInfo.ratio;
+                        pos.z = -dstX;
+                        break;
+                    case 1:
+                        pos.x = dstX;
+                        pos.z = -offset;
+                        break;
+                    case 2:
+                        pos.x = offset * game.gameInfo.ratio;
+                        pos.z = dstX;
+                        break;
+                    case 3:
+                        pos.x = -dstX;
+                        pos.z = offset;
+                        break;
+                }
+                //translate同理,注意是local,会受父节点transform的影响
+                sp.transform.localPosition = pos;
+                //sp.transform.translate(pos, false);
+            }
+        };
+        return wallCtrl;
+    }(Laya.Script));
+    script.wallCtrl = wallCtrl;
+})(script || (script = {}));
+//# sourceMappingURL=wallCtrl.js.map

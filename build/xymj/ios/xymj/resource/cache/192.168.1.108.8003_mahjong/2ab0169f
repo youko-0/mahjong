@@ -1,0 +1,78 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home) {
+        var homeView = /** @class */ (function (_super) {
+            __extends(homeView, _super);
+            function homeView() {
+                var _this = _super.call(this) || this;
+                homeView.instance = _this;
+                _this.btnCreate.on(Laya.Event.CLICK, _this, _this.onBtnCreate);
+                _this.btnJoin.on(Laya.Event.CLICK, _this, _this.onBtnJoin);
+                _this.btnRecord.on(Laya.Event.CLICK, _this, _this.showRecord);
+                _this.joinDesk("000000");
+                _this.setUserInfo();
+                return _this;
+            }
+            homeView.prototype.showRecord = function (bShow) {
+                this.viewRank.visible = true;
+                this.viewRank.getMyRecord();
+            };
+            homeView.prototype.showActivity = function (bShow) {
+            };
+            homeView.prototype.showShare = function (bShow) {
+            };
+            homeView.prototype.onBtnJoin = function () {
+                this.viewInput.visible = true;
+            };
+            homeView.prototype.onBtnCreate = function () {
+                this.viewCreate.visible = true;
+            };
+            homeView.prototype.setUserInfo = function () {
+                this.head.skin = network.http.webRoot + "/Image/head/" + game.userInfo.userId + "_head.png";
+            };
+            homeView.prototype.joinDesk = function (pwd) {
+                var _this = this;
+                var url = "/app/userlogin.aspx?user_id=" + game.userInfo.userId + "&token=" + game.userInfo.token;
+                var url2 = "/data_interface/desk_mng.aspx?page_action=join_desk&desk_pwd=" + pwd;
+                url += "&url=" + url2;
+                network.http.getUrl(url, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        return;
+                    }
+                    game.gameInfo.nameId = resp.game_id;
+                    game.gameInfo.serverIp = resp.server_ip; //"192.168.10.120";
+                    game.gameInfo.serverPort = resp.server_port; //8773;
+                    game.gameInfo.deskPwd = resp.desk_pwd;
+                    game.gameInfo.json_rule = resp.json_rule;
+                    game.gameInfo.max_round = parseInt(resp.round_times);
+                    game.gameInfo.max_people = parseInt(resp.max_people);
+                    Laya.loader.load(game.uiAtlas.game, Laya.Handler.create(_this, _this.onLoaded));
+                });
+            };
+            homeView.prototype.onLoaded = function () {
+                var gameV = new uiview.gameView();
+                Laya.stage.addChild(gameV);
+                this.removeSelf();
+                for (var i = 0; i < game.uiAtlas.home.length; ++i) {
+                    Laya.loader.clearRes(game.uiAtlas.home[i]);
+                }
+            };
+            homeView.instance = null;
+            return homeView;
+        }(ui.homeViewUI));
+        home.homeView = homeView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=homeView.js.map

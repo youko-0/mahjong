@@ -4,31 +4,54 @@ module game {
         m_ws: network.ws;
         users: Array<userStruct> = null;
 
-        m_myDesk: number;
-        m_status: number;
+        m_myDesk: number = 0;   //自己的座位号
+        m_status: number = 0;   //桌子状态
+
+        m_dismiss = [0, 0, 0, 0];
 
         m_curPlayer: number;
         m_lastTile: number;
+
+        bOver = false;
+
+
         constructor() {
             gameClient.instance = this;
             console.log(gameInfo.serverIp + ":" + gameInfo.serverPort);
             this.users = new Array<userStruct>();
-            this.m_ws = new network.ws("ws://" + gameInfo.serverIp + ":" + gameInfo.serverPort);
-            this.m_ws.OnMessage = (data) => {
-                this.OnMessage(data);
-            };
-            this.m_ws.OnOpen = () => {
-                var room_data = {
-                    uNameID: gameInfo.nameId,
-                    dwUserID: userInfo.userId,
-                    szMD5Pass: userInfo.md5,
-                    desk_pwd_: gameInfo.deskPwd
-                }
-                this.m_ws.Send(100, 5, room_data);
-            };
-            this.m_ws.OnClose = () => {
-                this.onClose();
-            };
+            if (uiview.gameView.instance.recordMsg != null) {
+                Laya.timer.loop(1000, this, () => {
+                    this.OnRecordMessage();
+                });
+            } else {
+                this.m_ws = new network.ws("ws://" + gameInfo.serverIp + ":" + gameInfo.serverPort);
+                this.m_ws.OnMessage = (data) => {
+                    this.OnMessage(data);
+                };
+                this.m_ws.OnOpen = () => {
+                    var room_data = {
+                        uNameID: gameInfo.nameId,
+                        dwUserID: userInfo.userId,
+                        szMD5Pass: userInfo.md5,
+                        desk_pwd_: gameInfo.deskPwd
+                    }
+                    this.m_ws.Send(100, 5, room_data);
+                };
+                this.m_ws.OnClose = () => {
+                    this.onClose();
+                };
+            }
+
+        }
+
+        recordIdx = 0;
+        OnRecordMessage() {
+            if (this.recordIdx >= uiview.gameView.instance.recordMsg.length) {
+                Laya.timer.clear(this, this.OnRecordMessage);
+                return;
+            }
+            this.OnMessage(JSON.parse(uiview.gameView.instance.recordMsg[this.recordIdx]));
+            ++this.recordIdx;
         }
 
         OnMessage(data) {
@@ -155,6 +178,7 @@ module game {
             }
         }
 
+        //150
         OnFrame(head, data) {
             switch (head.bAssistantID) {
                 case 2:
@@ -163,6 +187,7 @@ module game {
             }
         }
 
+        //180
         OnGame(head, data) {
             switch (head.bAssistantID) {
                 case 1:
@@ -232,11 +257,9 @@ module game {
                     //countFen
                     uiview.gameView.instance.showFin(true);
                     break;
-                case 38:
-                    //end
-                    break;
                 case 52:
                     //showAllOver
+                    this.bOver = true;
                     uiview.gameView.instance.showFin(true);
                     break;
                 case 142:
@@ -252,13 +275,24 @@ module game {
                         uiview.gameView.instance.onBack();
                         return;
                     }
-
+                    uiview.gameView.instance.showDismiss(false);
                     break;
                 case 136:
                     //showDismiss
+                    this.m_dismiss[data.desk_station_] = data.dismiss_status_;
+                    uiview.gameView.instance.showDismiss(true);
                     break;
                 case 138:
                     //showDismiss
+                    uiview.gameView.instance.showDismiss(true);
+                    break;
+                case 163:
+                    //dismiss info
+                    //data.time
+                    for (let i = 0; i < 4; ++i) {
+                        this.m_dismiss[i] = data.arr[i];
+                    }
+                    uiview.gameView.instance.showDismiss(data.req);
                     break;
 
             }

@@ -1,0 +1,39 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var script;
+(function (script) {
+    var outCtrl = /** @class */ (function (_super) {
+        __extends(outCtrl, _super);
+        function outCtrl() {
+            return _super.call(this) || this;
+        }
+        outCtrl.prototype._load = function (own) {
+            this.out = own;
+        };
+        outCtrl.prototype._start = function () {
+        };
+        outCtrl.prototype.addCard = function (o) {
+            if (o == undefined) {
+                console.log("find card error");
+                return;
+            }
+            o.transform.localPosition = new Vector3((this.out.numChildren % 7 - 4) * 0.03, 0, -Math.floor(this.out.numChildren / 7) * 0.04);
+            o.transform.localRotationEuler = new Vector3(90, 0, 0);
+            this.out.addChild(o);
+        };
+        outCtrl.prototype.getLastOutCard = function () {
+            return this.out.removeChildAt(this.out.numChildren - 1);
+        };
+        return outCtrl;
+    }(Laya.Script));
+    script.outCtrl = outCtrl;
+})(script || (script = {}));
+//# sourceMappingURL=outCtrl.js.map

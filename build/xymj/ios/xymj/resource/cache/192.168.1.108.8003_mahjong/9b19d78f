@@ -1,0 +1,145 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var script;
+(function (script) {
+    var handCtrl = /** @class */ (function (_super) {
+        __extends(handCtrl, _super);
+        function handCtrl() {
+            var _this = _super.call(this) || this;
+            _this.point = new Laya.Vector2();
+            _this.ray = new Laya.Ray(new Laya.Vector3(0, 0, 0), new Laya.Vector3(0, 0, 0));
+            _this.startIdx = 0;
+            _this.que = -1;
+            _this.locked = false;
+            return _this;
+        }
+        handCtrl.prototype._load = function (own) {
+            this.hand = own;
+        };
+        handCtrl.prototype.setView = function (v) {
+            this.view = v;
+            if (v == 1) {
+                this.camera = this.hand.parent.getChildByName("Main Camera");
+                this._outHitInfo = new Laya.RaycastHit();
+                Laya.stage.on(Laya.Event.DOUBLE_CLICK, this, this.hitCtrl);
+            }
+            // console.log(this.hand.transform.localRotationEuler + " " + this.hand.transform.rotationEuler);
+            // var vec = this.hand.transform.localRotationEuler;
+            // this.hand.transform.localRotationEuler = new Vector3(vec.x, vec.y, vec.z);
+        };
+        handCtrl.prototype.addCards = function (data) {
+            for (var i = 0; i < data.length; ++i) {
+                this.addCard(data[i]);
+            }
+        };
+        handCtrl.prototype.addCard = function (o) {
+            var idx = this.startIdx;
+            for (; idx < this.hand.numChildren; ++idx) {
+                if (this.getValByName(o) < this.getValByName(this.hand.getChildAt(idx))) {
+                    break;
+                }
+            }
+            this.slideChildren(idx, 0.03);
+            o.transform.localPosition = new Vector3(-idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0); //这里x全部取负
+            o.transform.localRotationEuler = new Vector3(0, 0, 0);
+            this.hand.addChild(o);
+            this.hand.setChildIndex(o, idx);
+            o.layer = Laya.Layer.getLayerByNumber(this.view === 1 ? 1 : 0);
+        };
+        //瞎往后放一张(背面)
+        handCtrl.prototype.justAddCard = function (o) {
+            var idx = this.hand.numChildren;
+            this.hand.addChild(o);
+            o.transform.localRotationEuler = new Vector3(0, 0, 0);
+            o.transform.localPosition = new Vector3(-idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0); //这里x全部取负
+            o.layer = Laya.Layer.getLayerByNumber(0);
+        };
+        handCtrl.prototype.removeCard = function (val) {
+            var o = undefined;
+            var idx = this.startIdx;
+            for (; idx < this.hand.numChildren; ++idx) {
+                if (this.getValByName(this.hand.getChildAt(idx)) == val) {
+                    o = this.hand.removeChildAt(idx);
+                    break;
+                }
+            }
+            if (idx < this.hand.numChildren)
+                this.slideChildren(idx, -0.03);
+            return o;
+        };
+        handCtrl.prototype.addOneBlock = function (os, back) {
+            if (back === void 0) { back = false; }
+            if (os.length == 1) {
+                //补杠
+                for (var i = 0; i < this.startIdx; ++i) {
+                    if (this.getValByName(this.hand.getChildAt(i)) == this.getValByName(os[0])) {
+                        this.hand.getChildAt(i + 1).addChild(os[0]);
+                        os[0].layer = Laya.Layer.getLayerByNumber(0);
+                        os[0].transform.localRotationEuler = new Vector3();
+                        os[0].transform.localPosition = new Vector3(0, 0, 0.02);
+                        return;
+                    }
+                }
+            }
+            for (var i = 0; i < 3; ++i) {
+                var idx = this.startIdx + i;
+                os[i].transform.localPosition = new Vector3(-idx * 0.03 - Math.floor(this.startIdx / 3) * 0.01, 0, 0); //这里x全部取负
+                os[i].transform.localRotationEuler = new Vector3(this.view == 1 ? 30 : 90, 0, 0);
+                this.hand.addChild(os[i]);
+                this.hand.setChildIndex(os[i], idx);
+                os[i].layer = Laya.Layer.getLayerByNumber(0);
+            }
+            if (os.length == 4) {
+                os[1].addChild(os[3]);
+                os[3].layer = Laya.Layer.getLayerByNumber(0);
+                os[3].transform.localRotationEuler = new Vector3();
+                os[3].transform.localPosition = new Vector3(0, 0, 0.02);
+            }
+            this.startIdx += 3;
+            this.slideChildren(this.startIdx, 0.1); //0.03*3+0.01
+        };
+        handCtrl.prototype.getValByName = function (o) {
+            return parseInt(o.name.substr(3));
+        };
+        handCtrl.prototype.getChildByVal = function (val) {
+            for (var i = 0; i < this.hand.numChildren; ++i) {
+                if (this.getValByName(this.hand.getChildAt(i)) == val) {
+                    return i;
+                }
+            }
+            return -1;
+        };
+        handCtrl.prototype.hitCtrl = function () {
+            if (this.locked)
+                return;
+            this.point.elements[0] = Laya.MouseManager.instance.mouseX;
+            this.point.elements[1] = Laya.MouseManager.instance.mouseY;
+            this.camera.viewportPointToRay(this.point, this.ray);
+            Laya.Physics.rayCast(this.ray, this._outHitInfo, 10, 1);
+            if (this._outHitInfo.distance != -1) {
+                var o = this._outHitInfo.sprite3D;
+                //var pos = o.transform.localPosition;
+                game.gameClient.instance.reqOutCard(this.getValByName(o));
+                //o.transform.translate(new Vector3(0, 0.005*(pos.y==0?1:-1), 0));
+            }
+        };
+        handCtrl.prototype.slideChildren = function (idx, offset) {
+            for (var i = idx; i < this.hand.numChildren; ++i) {
+                this.hand.getChildAt(i).transform.translate(new Vector3(-offset, 0, 0));
+            }
+        };
+        handCtrl.prototype.setQue = function (val) {
+        };
+        return handCtrl;
+    }(Laya.Script));
+    script.handCtrl = handCtrl;
+})(script || (script = {}));
+//# sourceMappingURL=handCtrl.js.map

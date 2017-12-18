@@ -6,11 +6,12 @@ module uiview.home {
             this.input.visible = !Laya.Browser.onMobile;
         }
         onBtnLogin() {
+
             if (!Laya.Browser.onMobile) {
                 if (this.input.text != "TextInput") {
                     var str = this.input.text;
                     this.loginByToken(str, str);
-                }else{
+                } else {
                     this.loginByToken(game.userInfo.token, game.userInfo.token);
                 }
                 // if (game.userInfo.token != undefined) {
@@ -72,12 +73,17 @@ module uiview.home {
                 Laya.loader.load(game.uiAtlas.home, Laya.Handler.create(this, this.onLoaded));
             });
         }
-
         onLoaded() {
-            var home = new homeView();
+            var home = new homeView();//new ;uiview.gameView()
             Laya.stage.addChild(home);
             this.removeSelf();
             Laya.loader.clearRes(game.uiAtlas.login);
+            // network.http.downloadZip('http://192.168.1.109:8001/log/114_4.zip', (msg) => {
+            //     Laya.timer.loop(1000, this, () => {
+            //         uiview.gameView.instance.m_client.OnMessage(JSON.parse(msg[this.idx]));
+            //         ++this.idx;
+            //     });
+            // });
         }
     }
 

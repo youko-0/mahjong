@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":154,
+    "selecteID":157,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -18,14 +18,13 @@
             "props":{"y":0,"x":640,"var":"deskInfo","skin":"game/toolbar.png","pivotX":200},
             "nodeParent":1,
             "label":"Image(deskInfo)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":63,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":10,"x":117,"text":"233223","strokeColor":"#0f5358","stroke":2,"name":"pwd","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -38,7 +37,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":9,"x":265,"text":"0","strokeColor":"#0f5358","stroke":2,"name":"cur","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -51,7 +49,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":9,"x":318,"text":"0","strokeColor":"#0f5358","stroke":2,"name":"total","fontSize":22,"color":"#C9EFEC","bold":true},
                     "nodeParent":63,
@@ -64,7 +61,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":54,"x":200,"text":"1111","strokeColor":"#0f5358","stroke":2,"name":"option","fontSize":22,"color":"#C9EFEC","bold":true,"anchorY":0.5,"anchorX":0.5,"align":"center"},
                     "nodeParent":63,
@@ -76,6 +72,19 @@
                     "child":[
                         ]
                 }]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":9,"x":1176,"var":"btnSet","stateNum":"1","skin":"game/hall_setting.png"},
+            "nodeParent":1,
+            "label":"Button(btnSet)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":157,
+            "child":[
+                ]
         },
         {
             "x":15,
@@ -142,7 +151,7 @@
                     "props":{"y":25,"x":25,"width":32,"visible":false,"var":"blocks","pivotY":16,"pivotX":16,"height":32},
                     "nodeParent":2,
                     "label":"Sprite(blocks)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -534,14 +543,13 @@
             "props":{"y":18,"x":188,"var":"exchange"},
             "nodeParent":1,
             "label":"Sprite(exchange)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":154,
             "child":[
                 {
-                    "x":30,
                     "type":"TextInput",
                     "props":{"y":10,"x":18,"width":280,"text":"TextInput","overflow":"visible","color":"#ffffff"},
                     "nodeParent":154,
@@ -554,7 +562,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":35,"x":21,"width":24,"stateNum":"1","skin":"game/btn1.png","label":"label","height":16},
                     "nodeParent":154,
@@ -566,6 +573,21 @@
                     "child":[
                         ]
                 }]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"setView.ui",
+            "props":{"y":157,"x":348,"visible":false,"var":"viewSet","runtime":"uiview.setView"},
+            "nodeParent":1,
+            "label":"UIView(viewSet)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":156,
+            "child":[
+                ],
+            "$HIDDEN":true
         }],
     "animations":[
         {

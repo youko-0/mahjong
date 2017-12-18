@@ -1,0 +1,59 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var game;
+(function (game) {
+    var cardSp = /** @class */ (function (_super) {
+        __extends(cardSp, _super);
+        function cardSp(val, bBack, idx) {
+            var _this = _super.call(this) || this;
+            _this.val = val;
+            _this.bBack = bBack;
+            _this.idx = idx;
+            if (bBack) {
+                _this.graphics.drawTexture(Laya.loader.getRes("cards/poker_back.png"));
+            }
+            else {
+                _this.graphics.drawTexture(Laya.loader.getRes("cards/poker_bg.png"));
+                _this.drwaVal();
+            }
+            _this.pivot(32, 44);
+            return _this;
+            //发牌动画
+        }
+        cardSp.prototype.drwaVal = function () {
+            var kind = (this.val & 0xf0) >> 4;
+            var spKind = new Laya.Sprite();
+            spKind.graphics.drawTexture(Laya.loader.getRes("cards/kind_" + kind + ".png"));
+            spKind.pos(16, 32);
+            this.addChild(spKind);
+            var spVal = new Laya.Sprite();
+            spVal.graphics.drawTexture(Laya.loader.getRes((kind % 2 == 0 ? "cards/r_" : "cards/b_") + (this.val & 0x0f) + ".png"));
+            spVal.pos(8, 6);
+            this.addChild(spVal);
+        };
+        cardSp.prototype.flip = function () {
+            if (this.bBack) {
+                Laya.Tween.to(this, { scaleX: 0 }, 200, null, Laya.Handler.create(this, this._flip), this.idx * 100);
+                this.bBack = false;
+            }
+        };
+        cardSp.prototype._flip = function () {
+            this.drwaVal();
+            this.graphics.drawTexture(Laya.loader.getRes("cards/poker_bg.png"));
+            var offset = this.idx > 2 ? 20 : 0;
+            var dstX = this.x + offset;
+            Laya.Tween.to(this, { scaleX: 1, x: dstX }, 200, Laya.Ease.linearNone);
+        };
+        return cardSp;
+    }(Laya.Sprite));
+    game.cardSp = cardSp;
+})(game || (game = {}));
+//# sourceMappingURL=cardSp.js.map

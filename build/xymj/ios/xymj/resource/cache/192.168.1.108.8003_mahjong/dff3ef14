@@ -1,0 +1,158 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var View = laya.ui.View;
+var Dialog = laya.ui.Dialog;
+var ui;
+(function (ui) {
+    var createViewUI = /** @class */ (function (_super) {
+        __extends(createViewUI, _super);
+        function createViewUI() {
+            return _super.call(this) || this;
+        }
+        createViewUI.prototype.createChildren = function () {
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.createViewUI.uiView);
+        };
+        createViewUI.uiView = { "type": "View", "props": { "width": 1100, "height": 640 }, "child": [{ "type": "Image", "props": { "y": 40, "x": 0, "width": 1080, "skin": "create/scale_bg.png", "sizeGrid": "32,32,32,32", "pivotY": 0, "pivotX": 0, "height": 600 } }, { "type": "RadioGroup", "props": { "y": 164, "x": 271, "var": "grpRound", "space": 100, "skin": "create/checkbox.png", "selectedIndex": 1, "labels": "8局,16局", "labelStrokeColor": "#000000", "labelSize": 32, "labelPadding": "0,0,0,10", "labelFont": "SimHei", "labelColors": "#40210a,#8c4c1f,#ffff00,gray" } }, { "type": "Button", "props": { "y": 19, "x": 1041, "stateNum": 1, "skin": "create/btn_close.png", "name": "close" } }, { "type": "Button", "props": { "y": 498, "x": 429, "var": "btnCreate", "stateNum": 1, "skin": "create/btn_create.png" } }, { "type": "Image", "props": { "y": 17, "x": 439, "skin": "create/create_title.png" } }, { "type": "Label", "props": { "y": 168, "x": 101, "text": "局数:", "fontSize": 32, "font": "SimHei", "color": "#40210a" } }] };
+        return createViewUI;
+    }(View));
+    ui.createViewUI = createViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var finViewUI = /** @class */ (function (_super) {
+        __extends(finViewUI, _super);
+        function finViewUI() {
+            return _super.call(this) || this;
+        }
+        finViewUI.prototype.createChildren = function () {
+            View.regComponent("Text", laya.display.Text);
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.finViewUI.uiView);
+        };
+        finViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "skin": "fin/fin_bg.png" } }, { "type": "Button", "props": { "y": 573, "x": 512, "var": "btnCon", "stateNum": 1, "skin": "fin/result_btn_con.png" } }, { "type": "Image", "props": { "y": 164, "x": 116, "skin": "fin/nn_fin_wj.png" } }, { "type": "Image", "props": { "y": 173, "x": 569, "skin": "fin/nn_fin_px.png" } }, { "type": "Image", "props": { "y": 173, "x": 753, "skin": "fin/nn_fin_df.png" } }, { "type": "Image", "props": { "y": 4, "x": 411, "skin": "fin/result_lose.png", "name": "lose" } }, { "type": "Image", "props": { "y": 7, "x": 390, "skin": "fin/result_win.png", "name": "win" } }, { "type": "List", "props": { "y": 210, "x": 329, "width": 600, "var": "list", "spaceY": 4, "spaceX": 0, "repeatY": 5, "repeatX": 1, "height": 360 } }, { "type": "Panel", "props": { "var": "pnl" }, "child": [{ "type": "Box", "props": { "y": 210, "x": 329, "width": 600, "name": "render", "height": 64 }, "child": [{ "type": "Image", "props": { "y": 7, "x": 55, "name": "nick" } }, { "type": "Image", "props": { "y": 7, "x": 234, "name": "bull" } }, { "type": "Text", "props": { "y": 25, "x": 433, "text": "text", "name": "score", "color": "#ffffff" } }] }] }] };
+        return finViewUI;
+    }(View));
+    ui.finViewUI = finViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var gameViewUI = /** @class */ (function (_super) {
+        __extends(gameViewUI, _super);
+        function gameViewUI() {
+            return _super.call(this) || this;
+        }
+        gameViewUI.prototype.createChildren = function () {
+            View.regComponent("Text", laya.display.Text);
+            View.regComponent("uiview.finView", uiview.finView);
+            View.regComponent("uiview.setView", uiview.setView);
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.gameViewUI.uiView);
+        };
+        gameViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 640, "var": "deskInfo", "skin": "game/toolbar.png", "pivotX": 200 }, "child": [{ "type": "Label", "props": { "y": 10, "x": 117, "text": "233223", "strokeColor": "#0f5358", "stroke": 2, "name": "pwd", "fontSize": 22, "color": "#C9EFEC", "bold": true } }, { "type": "Label", "props": { "y": 9, "x": 265, "text": "0", "strokeColor": "#0f5358", "stroke": 2, "name": "cur", "fontSize": 22, "color": "#C9EFEC", "bold": true } }, { "type": "Label", "props": { "y": 9, "x": 318, "text": "0", "strokeColor": "#0f5358", "stroke": 2, "name": "total", "fontSize": 22, "color": "#C9EFEC", "bold": true } }, { "type": "Label", "props": { "y": 54, "x": 200, "text": "1111", "strokeColor": "#0f5358", "stroke": 2, "name": "option", "fontSize": 22, "color": "#C9EFEC", "bold": true, "anchorY": 0.5, "anchorX": 0.5, "align": "center" } }] }, { "type": "Button", "props": { "y": 9, "x": 1176, "var": "btnSet", "stateNum": 1, "skin": "game/hall_setting.png" } }, { "type": "Sprite", "props": { "y": 480, "x": 640, "width": 32, "var": "btns", "pivotY": 16, "pivotX": 16, "height": 32 }, "child": [{ "type": "Sprite", "props": { "y": 15, "x": 15, "width": 32, "visible": false, "pivotY": 16, "pivotX": 16, "name": "chips", "height": 32 }, "child": [{ "type": "Button", "props": { "y": 5, "x": -221, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 24, "labelColors": "white", "label": "  万" } }, { "type": "Button", "props": { "y": 7, "x": -3, "stateNum": 1, "skin": "game/btn_x2.png", "label": "条" } }, { "type": "Button", "props": { "y": 7, "x": 222, "stateNum": 1, "skin": "game/btn_x3.png", "label": "筒" } }] }, { "type": "Sprite", "props": { "y": 25, "x": 25, "width": 32, "visible": false, "var": "blocks", "pivotY": 16, "pivotX": 16, "height": 32 }, "child": [{ "type": "Button", "props": { "y": 5, "x": -221, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 32, "labelColors": "red", "label": "吃" } }, { "type": "Button", "props": { "y": 5, "x": -92, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 32, "labelColors": "red", "label": "碰" } }, { "type": "Button", "props": { "y": 3, "x": 37, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 32, "labelColors": "red", "label": "杠" } }, { "type": "Button", "props": { "y": 1, "x": 190, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 32, "labelColors": "red", "label": "胡" } }, { "type": "Button", "props": { "y": 2, "x": 348, "stateNum": 1, "skin": "game/btn_x1.png", "labelStrokeColor": "#000000", "labelStroke": 0, "labelSize": 32, "labelColors": "red", "label": "过" } }] }] }, { "type": "Sprite", "props": { "var": "players" }, "child": [{ "type": "Image", "props": { "y": 225, "x": 1148, "skin": "game/avatar_bg.png" }, "child": [{ "type": "Image", "props": { "y": 90, "x": 8, "skin": "game/avatar_coin.png" } }, { "type": "Image", "props": { "y": -15, "x": 81, "skin": "game/ntsign.png", "name": "nt" } }, { "type": "Sprite", "props": { "y": 15, "x": 17, "width": 64, "name": "head", "height": 64 } }, { "type": "Sprite", "props": { "y": 125, "x": -10, "name": "nick" } }, { "type": "Text", "props": { "y": 89, "x": 50, "text": "0", "name": "money", "fontSize": 22, "color": "#ffffff" } }] }, { "type": "Image", "props": { "y": 363, "x": 37, "skin": "game/avatar_bg.png" }, "child": [{ "type": "Image", "props": { "y": 90, "x": 8, "skin": "game/avatar_coin.png" } }, { "type": "Image", "props": { "y": -15, "x": 81, "skin": "game/ntsign.png", "name": "nt" } }, { "type": "Sprite", "props": { "y": 15, "x": 17, "width": 64, "name": "head", "height": 64 } }, { "type": "Sprite", "props": { "y": 125, "x": -10, "name": "nick" } }, { "type": "Text", "props": { "y": 89, "x": 50, "text": "0", "name": "money", "fontSize": 22, "color": "#ffffff" } }] }, { "type": "Image", "props": { "y": 91, "x": 40, "skin": "game/avatar_bg.png" }, "child": [{ "type": "Image", "props": { "y": 90, "x": 8, "skin": "game/avatar_coin.png" } }, { "type": "Image", "props": { "y": -15, "x": 81, "skin": "game/ntsign.png", "name": "nt" } }, { "type": "Sprite", "props": { "y": 15, "x": 17, "width": 64, "name": "head", "height": 64 } }, { "type": "Sprite", "props": { "y": 125, "x": -10, "name": "nick" } }, { "type": "Text", "props": { "y": 89, "x": 50, "text": "0", "name": "money", "fontSize": 22, "color": "#ffffff" } }] }, { "type": "Image", "props": { "y": 39, "x": 985, "skin": "game/avatar_bg.png" }, "child": [{ "type": "Image", "props": { "y": 90, "x": 8, "skin": "game/avatar_coin.png" } }, { "type": "Image", "props": { "y": -15, "x": 81, "skin": "game/ntsign.png", "name": "nt" } }, { "type": "Sprite", "props": { "y": 15, "x": 17, "width": 64, "name": "head", "height": 64 } }, { "type": "Sprite", "props": { "y": 125, "x": -10, "name": "nick" } }, { "type": "Text", "props": { "y": 89, "x": 50, "text": "0", "name": "money", "fontSize": 22, "color": "#ffffff" } }] }] }, { "type": "finView", "props": { "visible": false, "var": "fin", "runtime": "uiview.finView" } }, { "type": "Sprite", "props": { "y": 18, "x": 188, "var": "exchange" }, "child": [{ "type": "TextInput", "props": { "y": 10, "x": 18, "width": 280, "text": "TextInput", "overflow": "visible", "color": "#ffffff" } }, { "type": "Button", "props": { "y": 35, "x": 21, "width": 24, "stateNum": 1, "skin": "game/btn1.png", "label": "label", "height": 16 } }] }, { "type": "setView", "props": { "y": 157, "x": 348, "visible": false, "var": "viewSet", "runtime": "uiview.setView" } }] };
+        return gameViewUI;
+    }(View));
+    ui.gameViewUI = gameViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var groupViewUI = /** @class */ (function (_super) {
+        __extends(groupViewUI, _super);
+        function groupViewUI() {
+            return _super.call(this) || this;
+        }
+        groupViewUI.prototype.createChildren = function () {
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.groupViewUI.uiView);
+        };
+        groupViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Button", "props": { "y": 150, "x": 112, "var": "btnMyDesk", "stateNum": 1, "skin": "group/btnJoinD.png" } }, { "type": "Button", "props": { "y": 280, "x": 57, "var": "btnMyGrp", "stateNum": 1, "skin": "group/btnMyG.png" } }, { "type": "Button", "props": { "y": 426, "x": 13, "var": "btnJoin", "stateNum": 1, "skin": "group/btnJoinG.png" } }, { "type": "Image", "props": { "y": 16, "x": 105, "visible": false, "var": "rootView", "skin": "nonepack/allBg.png" }, "child": [{ "type": "Button", "props": { "y": -1, "x": 1012, "stateNum": 1, "skin": "group/btnClose.png", "name": "close" } }, { "type": "List", "props": { "y": 126, "x": 36, "var": "listG" }, "child": [{ "type": "Box", "props": { "renderType": "render" }, "child": [{ "type": "Image", "props": { "skin": "group/item_bg.png" } }, { "type": "Button", "props": { "y": 24, "x": 787, "stateNum": 1, "skin": "group/btnCreate.png", "name": "create" } }, { "type": "Button", "props": { "y": 24, "x": 602, "stateNum": 1, "skin": "group/btnQuitG.png", "name": "quit" } }, { "type": "Label", "props": { "y": 15, "x": 120, "text": "label", "name": "my", "fontSize": 24, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 15, "x": 469, "text": "label", "name": "least", "fontSize": 24, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 59, "x": 122, "text": "label", "name": "id", "fontSize": 24, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 59, "x": 292, "text": "label", "name": "name", "fontSize": 24, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 59, "x": 512, "text": "label", "name": "rate", "fontSize": 24, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 38, "x": 730, "text": "审核中", "name": "status", "fontSize": 32, "color": "#ffffff" } }] }] }, { "type": "List", "props": { "y": 128, "x": 36, "width": 1000, "var": "listD", "spaceY": 8, "repeatY": 4, "repeatX": 1, "height": 500 }, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "name": "render" }, "child": [{ "type": "Image", "props": { "skin": "group/item_bg.png" } }, { "type": "Button", "props": { "y": 22, "x": 787, "stateNum": 1, "skin": "group/btnJoin.png", "name": "join" } }, { "type": "Label", "props": { "y": 45, "x": 76, "text": "rule", "name": "rule", "fontSize": 32, "color": "#ffffff", "align": "left" } }] }] }] }] };
+        return groupViewUI;
+    }(View));
+    ui.groupViewUI = groupViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var homeViewUI = /** @class */ (function (_super) {
+        __extends(homeViewUI, _super);
+        function homeViewUI() {
+            return _super.call(this) || this;
+        }
+        homeViewUI.prototype.createChildren = function () {
+            View.regComponent("uiview.home.groupView", uiview.home.groupView);
+            View.regComponent("uiview.home.createView", uiview.home.createView);
+            View.regComponent("uiview.home.inputView", uiview.home.inputView);
+            View.regComponent("uiview.home.rankView", uiview.home.rankView);
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.homeViewUI.uiView);
+        };
+        homeViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "skin": "home/main_BJ.png" } }, { "type": "Image", "props": { "y": 720, "x": 640, "skin": "home/main_menu.png", "pivotY": 73, "pivotX": 620, "name": "menu" }, "child": [{ "type": "Button", "props": { "y": -48, "x": 113, "width": 106, "var": "btnRecord", "stateNum": 1, "skin": "home/hall_vedio.png", "height": 102 } }, { "type": "Button", "props": { "y": -48, "x": 413, "var": "btnAct", "stateNum": 1, "skin": "home/hall_notice.png" } }, { "type": "Button", "props": { "y": -49, "x": 712, "var": "btnShare", "stateNum": 1, "skin": "home/hall_share.png" } }, { "type": "Button", "props": { "y": -630, "x": 1153, "var": "btnSet", "stateNum": 1, "skin": "home/hall_setting.png" } }, { "type": "Button", "props": { "y": -63, "x": 1013, "var": "btnReport", "stateNum": 1, "skin": "home/hall_service.png" } }, { "type": "Button", "props": { "y": -630, "x": 1055, "var": "btnRule", "stateNum": 1, "skin": "home/hall_rule.png" } }] }, { "type": "Image", "props": { "y": 137, "x": 516, "skin": "home/brodcast.png", "name": "brodcast" }, "child": [{ "type": "Image", "props": { "skin": "home/main_brodcast_bg.png" } }] }, { "type": "Button", "props": { "y": 164, "x": 880, "var": "btnJoin", "stateNum": 1, "skin": "home/main_btn_join.png" } }, { "type": "Button", "props": { "y": 151, "x": 484, "var": "btnCreate", "stateNum": 1, "skin": "home/main_btn_create.png" } }, { "type": "groupView", "props": { "y": 0, "x": 0, "var": "viewgroup", "runtime": "uiview.home.groupView", "mouseThrough": true } }, { "type": "createView", "props": { "y": 45, "x": 97, "visible": false, "var": "viewCreate", "runtime": "uiview.home.createView" } }, { "type": "inputView", "props": { "y": 27, "x": 210, "visible": false, "var": "viewInput", "runtime": "uiview.home.inputView" } }, { "type": "rankView", "props": { "visible": false, "var": "viewRank", "runtime": "uiview.home.rankView" } }, { "type": "Image", "props": { "y": 19, "x": 48, "skin": "home/main_headbox.png" }, "child": [{ "type": "Image", "props": { "y": 11, "x": 11, "width": 72, "var": "head", "height": 72 } }] }] };
+        return homeViewUI;
+    }(View));
+    ui.homeViewUI = homeViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var inputViewUI = /** @class */ (function (_super) {
+        __extends(inputViewUI, _super);
+        function inputViewUI() {
+            return _super.call(this) || this;
+        }
+        inputViewUI.prototype.createChildren = function () {
+            View.regComponent("Text", laya.display.Text);
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.inputViewUI.uiView);
+        };
+        inputViewUI.uiView = { "type": "View", "props": { "width": 900, "height": 640 }, "child": [{ "type": "Image", "props": { "y": 12, "x": 2, "width": 880, "skin": "input/scale_bg.png", "sizeGrid": "32,32,32,32", "height": 620 } }, { "type": "Button", "props": { "y": 484, "x": 342, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "0" } }, { "type": "Button", "props": { "y": 226, "x": 129, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "1" } }, { "type": "Button", "props": { "y": 226, "x": 342, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "2" } }, { "type": "Button", "props": { "y": 226, "x": 555, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "3" } }, { "type": "Button", "props": { "y": 312, "x": 129, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "4" } }, { "type": "Button", "props": { "y": 312, "x": 342, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "5" } }, { "type": "Button", "props": { "y": 312, "x": 555, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "6" } }, { "type": "Button", "props": { "y": 398, "x": 129, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "7" } }, { "type": "Button", "props": { "y": 398, "x": 342, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "8" } }, { "type": "Button", "props": { "y": 398, "x": 555, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "9" } }, { "type": "Button", "props": { "y": 484, "x": 129, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "删除" } }, { "type": "Button", "props": { "y": 484, "x": 555, "stateNum": 1, "skin": "input/btn_blue.png", "labelSize": 24, "labelColors": "white", "label": "重输" } }, { "type": "Text", "props": { "y": 127, "x": 360, "var": "text", "valign": "middle", "fontSize": 48, "color": "#ffffff", "bold": true, "align": "center" } }, { "type": "Button", "props": { "y": 8, "x": 842, "stateNum": 1, "skin": "input/btn_close.png", "name": "close" } }] };
+        return inputViewUI;
+    }(View));
+    ui.inputViewUI = inputViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var loginViewUI = /** @class */ (function (_super) {
+        __extends(loginViewUI, _super);
+        function loginViewUI() {
+            return _super.call(this) || this;
+        }
+        loginViewUI.prototype.createChildren = function () {
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.loginViewUI.uiView);
+        };
+        loginViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "skin": "login/login_bg.png" } }, { "type": "Button", "props": { "y": 533, "x": 637, "width": 247, "var": "btnLogin", "stateNum": 1, "skin": "login/btn_login.png", "pivotY": 30, "pivotX": 100, "height": 77 } }, { "type": "Image", "props": { "y": 149, "x": 234, "skin": "login/logo.png" } }, { "type": "TextInput", "props": { "y": 523, "x": 347, "var": "input", "text": "TextInput", "skin": "comp/textinput.png" } }] };
+        return loginViewUI;
+    }(View));
+    ui.loginViewUI = loginViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var rankViewUI = /** @class */ (function (_super) {
+        __extends(rankViewUI, _super);
+        function rankViewUI() {
+            return _super.call(this) || this;
+        }
+        rankViewUI.prototype.createChildren = function () {
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.rankViewUI.uiView);
+        };
+        rankViewUI.uiView = { "type": "View", "props": { "width": 1280, "height": 720 }, "child": [{ "type": "Image", "props": { "y": 17, "x": 115, "skin": "nonepack/allBg.png" } }, { "type": "List", "props": { "y": 140, "x": 154, "var": "listAll", "spaceY": 10, "repeatY": 4 }, "child": [{ "type": "Box", "props": { "renderType": "render" }, "child": [{ "type": "Image", "props": { "skin": "nonepack/item_bg.png" } }, { "type": "Label", "props": { "y": 43, "x": 53, "text": "0", "name": "no", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 43, "x": 155, "text": "0", "name": "pwd", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 21, "x": 284, "text": "0", "overflow": "visible", "name": "p0", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 21, "x": 421, "text": "0", "overflow": "visible", "name": "p1", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 21, "x": 559, "text": "0", "overflow": "visible", "name": "p2", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 21, "x": 696, "text": "0", "overflow": "visible", "name": "p3", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 21, "x": 817, "wordWrap": true, "width": 163, "text": "0", "name": "time", "height": 71, "fontSize": 24, "color": "#ffffff" } }] }] }, { "type": "List", "props": { "y": 140, "x": 154, "var": "listRound", "spaceY": 8, "height": 560 }, "child": [{ "type": "Box", "props": { "renderType": "render" }, "child": [{ "type": "Image", "props": { "skin": "nonepack/item_bg.png" } }, { "type": "Label", "props": { "y": 43, "x": 53, "text": "0", "name": "no", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 43, "x": 305, "text": "0", "name": "p0", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 43, "x": 442, "text": "0", "name": "p1", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 43, "x": 580, "text": "0", "name": "p2", "fontSize": 32, "color": "#ffffff" } }, { "type": "Label", "props": { "y": 43, "x": 717, "text": "0", "name": "p3", "fontSize": 32, "color": "#ffffff" } }] }] }, { "type": "Button", "props": { "y": 12, "x": 1143, "stateNum": 1, "skin": "rank/btnClose.png", "name": "close" } }, { "type": "Image", "props": { "y": 70, "x": 186, "var": "titleAll", "skin": "rank/xhao.png" }, "child": [{ "type": "Image", "props": { "y": 0, "x": 101, "skin": "rank/fjh.png" } }, { "type": "Image", "props": { "y": -1, "x": 247, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": 3, "x": 392, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": -2, "x": 524, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": 0, "x": 664, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": 0, "x": 822, "skin": "rank/rq.png" } }] }, { "type": "Image", "props": { "y": 70, "x": 186, "var": "titleRound", "skin": "rank/xhao.png" }, "child": [{ "type": "Image", "props": { "y": -1, "x": 247, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": 3, "x": 392, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": -2, "x": 524, "skin": "rank/wj.png" } }, { "type": "Image", "props": { "y": 0, "x": 664, "skin": "rank/wj.png" } }, { "type": "Button", "props": { "y": 541, "x": 427, "stateNum": 1, "skin": "rank/btnClose.png" } }] }] };
+        return rankViewUI;
+    }(View));
+    ui.rankViewUI = rankViewUI;
+})(ui || (ui = {}));
+(function (ui) {
+    var setViewUI = /** @class */ (function (_super) {
+        __extends(setViewUI, _super);
+        function setViewUI() {
+            return _super.call(this) || this;
+        }
+        setViewUI.prototype.createChildren = function () {
+            _super.prototype.createChildren.call(this);
+            this.createView(ui.setViewUI.uiView);
+        };
+        setViewUI.uiView = { "type": "View", "props": { "width": 600, "height": 360 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 600, "skin": "set/scale_bg.png", "sizeGrid": "32,32,32,32", "height": 360 } }, { "type": "Sprite", "props": { "var": "disRoot" }, "child": [{ "type": "List", "props": { "y": 68, "x": 166, "var": "list" }, "child": [{ "type": "Box", "props": { "y": -0.5, "x": -0.5, "renderType": "render" }, "child": [{ "type": "Image", "props": { "y": -0.5, "x": -0.5, "name": "name" } }, { "type": "Label", "props": { "y": 16, "x": 221, "text": "label", "name": "sta", "fontSize": 28, "color": "#321803" } }] }] }, { "type": "Button", "props": { "y": 262, "x": 101, "var": "btnAgree", "stateNum": 1, "skin": "set/btn1.png", "labelSize": 24, "labelColors": "white", "label": "同意" } }, { "type": "Button", "props": { "y": 262, "x": 396, "var": "btnRefus", "stateNum": 1, "skin": "set/btn1.png", "labelSize": 24, "labelColors": "white", "label": "拒绝" } }, { "type": "Label", "props": { "y": 224, "x": 162, "text": "解散倒计时:", "fontSize": 28, "color": "#3d1906" } }, { "type": "Label", "props": { "y": 223, "x": 322, "var": "tim", "text": "0", "fontSize": 28, "color": "#3d1906" } }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "var": "setRoot" }, "child": [{ "type": "Button", "props": { "y": 262, "x": 242, "var": "btnReqDis", "stateNum": 1, "skin": "set/btn1.png", "labelSize": 24, "labelColors": "white", "label": "申请解散" } }, { "type": "Button", "props": { "y": -6, "x": 545, "stateNum": 1, "skin": "set/btn_close.png", "name": "close" } }] }] };
+        return setViewUI;
+    }(View));
+    ui.setViewUI = setViewUI;
+})(ui || (ui = {}));
+//# sourceMappingURL=layaUI.max.all.js.map

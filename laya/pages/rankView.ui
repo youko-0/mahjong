@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":41,
-    "selecteID":42,
+    "selectedBox":1,
+    "selecteID":13,
     "props":{"width":1280,"sceneColor":"#000000","height":720},
     "nodeParent":-1,
     "label":"View",
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":140,"x":154,"var":"listAll","spaceY":4,"repeatY":4},
+            "props":{"y":140,"x":154,"var":"listAll","spaceY":10,"repeatY":4},
             "nodeParent":1,
             "label":"List(listAll)",
             "isOpen":false,
@@ -42,7 +42,7 @@
                     "props":{"renderType":"render"},
                     "nodeParent":5,
                     "label":"Box",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":false,
                     "hasChild":true,
@@ -86,7 +86,7 @@
                         },
                         {
                             "type":"Label",
-                            "props":{"y":43,"x":305,"text":"0","name":"p0","fontSize":32,"color":"#ffffff"},
+                            "props":{"y":21,"x":284,"text":"0","overflow":"visible","name":"p0","fontSize":32,"color":"#ffffff"},
                             "nodeParent":4,
                             "label":"Label(p0)",
                             "isDirectory":false,
@@ -98,7 +98,7 @@
                         },
                         {
                             "type":"Label",
-                            "props":{"y":43,"x":442,"text":"0","name":"p1","fontSize":32,"color":"#ffffff"},
+                            "props":{"y":21,"x":421,"text":"0","overflow":"visible","name":"p1","fontSize":32,"color":"#ffffff"},
                             "nodeParent":4,
                             "label":"Label(p1)",
                             "isDirectory":false,
@@ -110,7 +110,7 @@
                         },
                         {
                             "type":"Label",
-                            "props":{"y":43,"x":580,"text":"0","name":"p2","fontSize":32,"color":"#ffffff"},
+                            "props":{"y":21,"x":559,"text":"0","overflow":"visible","name":"p2","fontSize":32,"color":"#ffffff"},
                             "nodeParent":4,
                             "label":"Label(p2)",
                             "isDirectory":false,
@@ -122,7 +122,7 @@
                         },
                         {
                             "type":"Label",
-                            "props":{"y":43,"x":717,"text":"0","name":"p3","fontSize":32,"color":"#ffffff"},
+                            "props":{"y":21,"x":696,"text":"0","overflow":"visible","name":"p3","fontSize":32,"color":"#ffffff"},
                             "nodeParent":4,
                             "label":"Label(p3)",
                             "isDirectory":false,
@@ -134,7 +134,7 @@
                         },
                         {
                             "type":"Label",
-                            "props":{"y":26,"x":819,"text":"0","name":"time","fontSize":32,"color":"#ffffff"},
+                            "props":{"y":21,"x":817,"wordWrap":true,"width":163,"text":"0","name":"time","height":71,"fontSize":24,"color":"#ffffff"},
                             "nodeParent":4,
                             "label":"Label(time)",
                             "isDirectory":false,
@@ -150,27 +150,29 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":140,"x":154,"var":"listRound","spaceY":4,"repeatY":4},
+            "props":{"y":140,"x":154,"var":"listRound","spaceY":8,"height":560},
             "nodeParent":1,
             "label":"List(listRound)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":13,
             "child":[
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"renderType":"render"},
                     "nodeParent":13,
                     "label":"Box",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":false,
                     "hasChild":true,
                     "compId":14,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "props":{"skin":"nonepack/item_bg.png"},
                             "nodeParent":14,
@@ -183,6 +185,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":43,"x":53,"text":"0","name":"no","fontSize":32,"color":"#ffffff"},
                             "nodeParent":14,
@@ -195,6 +198,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":43,"x":305,"text":"0","name":"p0","fontSize":32,"color":"#ffffff"},
                             "nodeParent":14,
@@ -207,6 +211,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":43,"x":442,"text":"0","name":"p1","fontSize":32,"color":"#ffffff"},
                             "nodeParent":14,
@@ -219,6 +224,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":43,"x":580,"text":"0","name":"p2","fontSize":32,"color":"#ffffff"},
                             "nodeParent":14,
@@ -231,6 +237,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":43,"x":717,"text":"0","name":"p3","fontSize":32,"color":"#ffffff"},
                             "nodeParent":14,
@@ -360,19 +367,6 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":0,"x":101,"skin":"rank/fjh.png"},
-                    "nodeParent":41,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":42,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
                     "props":{"y":-1,"x":247,"skin":"rank/wj.png"},
                     "nodeParent":41,
                     "label":"Image",
@@ -424,17 +418,18 @@
                 },
                 {
                     "x":30,
-                    "type":"Image",
-                    "props":{"y":0,"x":822,"skin":"rank/rq.png"},
+                    "type":"Button",
+                    "props":{"y":541,"x":427,"stateNum":"1","skin":"rank/btnClose.png"},
                     "nodeParent":41,
-                    "label":"Image",
+                    "label":"Button",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":47,
+                    "compId":48,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         }],
     "animations":[
         {

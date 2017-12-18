@@ -1,0 +1,59 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home) {
+        var inputView = /** @class */ (function (_super) {
+            __extends(inputView, _super);
+            function inputView(func) {
+                if (func === void 0) { func = 0; }
+                var _this = _super.call(this) || this;
+                var _loop_1 = function (i) {
+                    this_1.getChildAt(i).on(Laya.Event.CLICK, this_1, function () {
+                        var len = _this.text.text.length;
+                        if (len >= 6) {
+                            return;
+                        }
+                        _this.text.text += i - 1;
+                        if (func == 0 && len == 5) {
+                            home.homeView.instance.joinDesk(_this.text.text);
+                        }
+                    });
+                };
+                var this_1 = this;
+                for (var i = 1; i < 11; ++i) {
+                    _loop_1(i);
+                }
+                _this.getChildAt(11).on(Laya.Event.CLICK, _this, function () {
+                    var str = _this.text.text;
+                    if (str.length <= 0)
+                        return;
+                    _this.text.text = str.substr(0, str.length - 1);
+                });
+                if (func == 0) {
+                    _this.getChildAt(12).on(Laya.Event.CLICK, _this, function () {
+                        _this.text.text = "";
+                    });
+                }
+                else {
+                    _this.getChildAt(12).on(Laya.Event.CLICK, _this, function () {
+                        _this.text.text = "";
+                    });
+                }
+                return _this;
+            }
+            return inputView;
+        }(ui.inputViewUI));
+        home.inputView = inputView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=inputView.js.map

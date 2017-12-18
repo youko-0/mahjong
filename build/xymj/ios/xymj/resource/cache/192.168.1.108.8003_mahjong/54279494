@@ -1,0 +1,146 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var uiview;
+(function (uiview) {
+    var home;
+    (function (home) {
+        var rankView = /** @class */ (function (_super) {
+            __extends(rankView, _super);
+            function rankView() {
+                var _this = _super.call(this) || this;
+                _this.arrList = [];
+                _this.allIdx = 0;
+                _this.listAll.selectEnable = true;
+                _this.listAll.selectHandler = Laya.Handler.create(_this, _this.onViewRound, null, false);
+                _this.listRound.selectEnable = true;
+                _this.listRound.selectHandler = Laya.Handler.create(_this, _this.onViewRecord, null, false);
+                _this.titleRound.getChildAt(_this.titleRound.numChildren - 1).on(Laya.Event.CLICK, _this, function () {
+                    _this.listAll.visible = true;
+                    _this.titleAll.visible = true;
+                    _this.listRound.visible = false;
+                    _this.titleRound.visible = false;
+                });
+                return _this;
+            }
+            rankView.prototype.getMyRecord = function () {
+                var _this = this;
+                this.listAll.visible = true;
+                this.listRound.visible = false;
+                this.titleAll.visible = true;
+                this.titleRound.visible = false;
+                var kurl = '/app/userlogin.aspx?';
+                kurl = network.http.pushValue(kurl, 'user_id', game.userInfo.userId);
+                kurl = network.http.pushValue(kurl, 'token', game.userInfo.token);
+                var rurl = '/data_interface/record_mng.aspx?';
+                rurl = network.http.pushValue(rurl, 'page_action', 'get_my_record_list');
+                kurl = network.http.pushValue(kurl, 'url', rurl);
+                network.http.getUrl(kurl, function (resp) {
+                    if (resp.result == "fail") {
+                        console.log(resp.tips);
+                        _this.listAll.array = [];
+                        return;
+                    }
+                    console.log(JSON.stringify(resp));
+                    //for (let i = 0; i < resp.rows.length; ++i) {
+                    for (var i = resp.rows.length - 1; i >= 0; --i) {
+                        var da = {
+                            money: [
+                                resp.rows[i].result_details.result[0].win_money,
+                                resp.rows[i].result_details.result[1].win_money,
+                                resp.rows[i].result_details.result[2].win_money,
+                                resp.rows[i].result_details.result[3].win_money
+                            ],
+                            down_url: resp.rows[i].down_url,
+                            round: resp.rows[i].current_round
+                        };
+                        if (_this.arrList.length == 0 || _this.arrList[0].pwd != resp.rows[i].desk_pwd) {
+                            var dall = {
+                                pwd: resp.rows[i].desk_pwd,
+                                user_list: resp.rows[i].user_list.split(','),
+                                win_money: da.money,
+                                nick_name: [resp.rows[i].result_details.result[0].nick_name,
+                                    resp.rows[i].result_details.result[1].nick_name,
+                                    resp.rows[i].result_details.result[2].nick_name,
+                                    resp.rows[i].result_details.result[3].nick_name],
+                                end_time: resp.rows[i].end_time,
+                                record_list: []
+                            };
+                            dall.record_list.push(da);
+                            _this.arrList.splice(0, 0, dall);
+                        }
+                        else {
+                            _this.arrList[0].record_list.push(da);
+                            for (var k = 0; k < 4; ++k) {
+                                _this.arrList[0].win_money[k] += da.money[k];
+                            }
+                        }
+                    }
+                    _this.updateRecordList();
+                });
+            };
+            rankView.prototype.updateRecordList = function () {
+                var arr = [];
+                for (var i = 0; i < this.arrList.length; ++i) {
+                    var da = {
+                        no: { text: i + 1 },
+                        pwd: { text: this.arrList[i].pwd },
+                        p0: { text: this.arrList[i].nick_name[0] + '\n' + this.arrList[i].win_money[0] },
+                        p1: { text: this.arrList[i].nick_name[1] + '\n' + this.arrList[i].win_money[1] },
+                        p2: { text: this.arrList[i].nick_name[2] + '\n' + this.arrList[i].win_money[2] },
+                        p3: { text: this.arrList[i].nick_name[3] + '\n' + this.arrList[i].win_money[3] },
+                        time: { text: this.arrList[i].end_time }
+                    };
+                    arr.push(da);
+                }
+                this.listAll.array = arr;
+            };
+            rankView.prototype.onViewRound = function (idx) {
+                this.titleAll.visible = false;
+                this.titleRound.visible = true;
+                this.listAll.visible = false;
+                this.listRound.visible = true;
+                this.allIdx = idx;
+                for (var i = 0; i < this.arrList[idx].user_list.length; ++i) {
+                    this.titleRound.getChildAt(i).skin = network.http.webRoot + "/Image/name/" + this.arrList[idx].user_list[i] + ".png";
+                }
+                var arr = [];
+                for (var i = 0; i < this.arrList[idx].record_list.length; ++i) {
+                    var record = this.arrList[idx].record_list[i];
+                    var da = {
+                        no: { text: record.round },
+                        p0: { text: record.money[0] },
+                        p1: { text: record.money[1] },
+                        p2: { text: record.money[2] },
+                        p3: { text: record.money[3] }
+                    };
+                    arr.push(da);
+                }
+                this.listRound.array = arr;
+            };
+            rankView.prototype.onViewRecord = function (idx) {
+                Laya.loader.load(game.uiAtlas.game, Laya.Handler.create(this, this.onLoaded, [this.arrList[this.allIdx].record_list[idx].down_url]));
+            };
+            rankView.prototype.onLoaded = function (url) {
+                network.http.downloadZip(url, function (msg) {
+                    var gameV = new uiview.gameView(msg);
+                    Laya.stage.addChild(gameV);
+                    home.homeView.instance.removeSelf();
+                    for (var i = 0; i < game.uiAtlas.home.length; ++i) {
+                        Laya.loader.clearRes(game.uiAtlas.home[i]);
+                    }
+                });
+            };
+            return rankView;
+        }(ui.rankViewUI));
+        home.rankView = rankView;
+    })(home = uiview.home || (uiview.home = {}));
+})(uiview || (uiview = {}));
+//# sourceMappingURL=rankView.js.map
